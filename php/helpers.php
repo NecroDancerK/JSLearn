@@ -4,47 +4,47 @@ session_start();
 
 require_once __DIR__ . '/config.php';
 
-function redirect(string $path)
+function redirect($path)
 {
     header("Location: $path");
     die();
 }
 
-function setValidationError(string $fieldName, string $message): void
+function setValidationError( $fieldName, $message)
 {
     $_SESSION['validation'][$fieldName] = $message;
 }
 
-function hasValidationError(string $fieldName): bool
+function hasValidationError($fieldName)
 {
     return isset($_SESSION['validation'][$fieldName]);
 }
 
-function validationErrorAttr(string $fieldName): string
+function validationErrorAttr($fieldName)
 {
     return isset($_SESSION['validation'][$fieldName]) ? 'aria-invalid="true"' : '';
 }
 
-function validationErrorMessage(string $fieldName): string
+function validationErrorMessage($fieldName)
 {
     $message = $_SESSION['validation'][$fieldName] ?? '';
     unset($_SESSION['validation'][$fieldName]);
     return $message;
 }
 
-function setOldValue(string $key, mixed $value): void
+function setOldValue($key, $value)
 {
     $_SESSION['old'][$key] = $value;
 }
 
-function old(string $key)
+function old($key)
 {
     $value = $_SESSION['old'][$key] ?? '';
     unset($_SESSION['old'][$key]);
     return $value;
 }
 
-function uploadFile(array $file, string $prefix = ''): string
+function uploadFile($file, $prefix = '')
 {
     $uploadPath = __DIR__ . '/../uploads';
 
@@ -62,24 +62,24 @@ function uploadFile(array $file, string $prefix = ''): string
     return "uploads/$fileName";
 }
 
-function setMessage(string $key, string $message): void
+function setMessage($key, $message)
 {
     $_SESSION['message'][$key] = $message;
 }
 
-function hasMessage(string $key): bool
+function hasMessage($key)
 {
     return isset($_SESSION['message'][$key]);
 }
 
-function getMessage(string $key): string
+function getMessage($key)
 {
     $message = $_SESSION['message'][$key] ?? '';
     unset($_SESSION['message'][$key]);
     return $message;
 }
 
-function getPDO(): PDO
+function getPDO()
 {
     try {
         return new \PDO('mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';charset=utf8;dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD);
@@ -88,7 +88,7 @@ function getPDO(): PDO
     }
 }
 
-function findUser(string $email): array|bool
+function findUser($email)
 {
     $pdo = getPDO();
 
@@ -98,7 +98,7 @@ function findUser(string $email): array|bool
 }
 
 
-function currentUser(): array|false
+function currentUser()
 {
     $pdo = getPDO();
 
@@ -113,20 +113,20 @@ function currentUser(): array|false
     return $stmt->fetch(\PDO::FETCH_ASSOC);
 }
 
-function logout(): void
+function logout()
 {
     unset($_SESSION['user']['id']);
     redirect('/');
 }
 
-function checkAuth(): void
+function checkAuth()
 {
     if (!isset($_SESSION['user']['id'])) {
         redirect('/');
     }
 }
 
-function checkGuest(): void
+function checkGuest()
 {
     if (isset($_SESSION['user']['id'])) {
         redirect('learn/learn1.php');
