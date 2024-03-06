@@ -1,0 +1,104 @@
+const userInputArray = [];
+let counter = 0;
+const arrayInputs = document.querySelectorAll(".inputTask");
+const answersStr = document.getElementById("answersStr").textContent;
+
+
+// Показывает ответ
+function showAnswer() {
+  const answersArray = answersStr.split(' ');
+
+  for (let index = 0; index < answersArray.length; index++) {
+    const input = arrayInputs[index];
+
+    if (input.getAttribute("readonly") !== "readonly") {
+      userInputArray.push(input.value);
+
+      if (userInputArray.length >= (answersArray.length + 1)) {
+        counter++;
+      }
+
+      showButton.innerText = "Скрыть ответ";
+      input.value = answersArray[index];
+      input.setAttribute("readonly", "readonly");
+      input.style.color = "blue";
+    } else {
+      showButton.innerText = "Показать ответ";
+
+      input.value = userInputArray[index + counter];
+
+      input.removeAttribute("readonly");
+      input.style.color = "";
+    }
+  }
+
+  checkButton.classList.toggle("hidden");
+}
+
+// Вычисляет размер инпутов по размеру ответов, чтобы они не были на пол экрана
+function changeSizeOfInputs() {
+  const inputsArray = answersStr.split(' ');
+
+  for (let index = 0; index < inputsArray.length; index++) {
+    const input = arrayInputs[index];
+
+    let width = inputsArray[index].length * 10;
+
+    input.style.width = width + "px";
+    input.style.height = "21px";
+    input.setAttribute("maxlength", inputsArray[index].length);
+  }
+}
+
+
+// Костыль для выполнения функции при загрузке
+document.getElementById("click").click();
+
+
+// Функция для проверки ответа, я перелопатил ее раз десять,
+// Короче теперь функция сохраняет результат ввода пользователя и правильность его в виде true/false
+function checkAnswer() {
+  const answersArray = answersStr.split(' ');
+  const resultPanelIncorrect = document.getElementById("resultIncorrect");
+  const resultPanelCorrect = document.getElementById("resultCorrect");
+  const resultPanelEnd = document.getElementById("resultEnd");
+  const arrayIdStr = document.getElementById("arrayId").innerText;
+  console.log((arrayIdStr));
+  const exercisePanel = document.querySelector(".exercise");
+  const checkButton = document.getElementById("checkButton");
+  const nextButton = document.getElementById("nextButton");
+  const resultsArray = []; // Массив для сохранения результатов пользователя
+
+  for (let index = 0; index < answersArray.length; index++) {
+    const input = arrayInputs[index];
+
+    // Если ответ правильный, то добавляем true, если неправильный то false, логично ебать
+    // Я максимально сократил этот момент, раньше тут был тернарный оператор, мог быть if else, но теперь тут просто проверка внутри скобок, которая как раз таки возвращается необходимые мне булевые значения, до этого тут был два раза resultsArray.push(true и false) и проверка перед ними)
+    resultsArray.push(input.value.trim() == answersArray[index]);
+  }
+
+  if (!resultsArray.includes(false)) {
+    // Туева хуча переключений классов для скрытия панели задания и отображения панели, что ответ правильный
+    exercisePanel.classList.add("hidden");
+    if (arrayIdStr == 1) {
+      resultPanelCorrect.classList.remove("hidden");
+      resultPanelCorrect.classList.add("block");
+    } else {
+      resultPanelEnd.classList.remove("hidden");
+      resultPanelEnd.classList.add("block");
+    }
+    checkButton.classList.add("hidden");
+    nextButton.classList.remove("hidden");
+  } else {
+    // Если ответ неправильный, то мы переключаем (кто мы блять? Я один здесь нахуй) классы панели с заданием и панели неправильного ответа 
+    exercisePanel.classList.toggle("hidden");
+    resultPanelIncorrect.classList.toggle("hidden");
+    if (checkButton.innerText === "Подтвердить ответ") {
+      checkButton.innerText = "Попробовать снова";
+    } else {
+      checkButton.innerText = "Подтвердить ответ";
+    }
+  }
+}
+
+
