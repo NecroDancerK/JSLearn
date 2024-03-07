@@ -4,7 +4,7 @@
 <?php include_once __DIR__ . '/components/mainHead.php' ?>
 
 
-<body>
+<body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
 
   <div class="wrapper dark:bg-gray-900">
     <?php
@@ -19,7 +19,8 @@
       <a href="../playground.php"
         class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
     </div>
-    <aside class="siderbar fixed top-0 left-0 h-full mt-[110px] bg-gray-100 dark:bg-slate-800 dark:text-white 2xl:w-[330px] w-[260px] flex flex-col">
+    <aside
+      class="siderbar fixed top-0 left-0 h-full mt-[110px] bg-gray-100 dark:bg-slate-800 dark:text-white 2xl:w-[330px] w-[260px] flex flex-col">
       <div class="scrollbox overflow-auto">
         <div class="scrollbox-inner pb-2" id="sidebar-content">
           <h3 class="text-xl font-bold mb-2 pl-2 mt-4 dark:text-white">Глава 1. Введение в JavaScript</h3>
@@ -118,7 +119,8 @@
         </div>
       </div>
     </aside>
-    <main class="pt-36 pb-10 mx-auto w-3/5 border border-b-0 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
+    <main
+      class="pt-36 pb-10 mx-auto w-3/5 border border-b-0 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
       <h2 class="text-4xl font-bold mb-4">Введение в JavaScript</h2>
       <h3 class="text-3xl font-bold mb-6">Что такое JavaScript</h3>
       <div class="buttons flex justify-end my-4 text-white font-bold text-lg">
@@ -134,15 +136,19 @@
           JavaScript был создан в 1995 году в компании Netscape разработчиком Брендоном Айком (Brendon Eich) в качестве
           языка сценариев в браузере Netscape Navigator 2. Первоначально язык назывался LiveScript, но на волне
           популярности
-          в тот момент другого языка Java LiveScript был переименован в JavaScript. Однако данный момент до сих пор иногда
-          приводит к некоторой путанице: некоторые начинающие разработчики считают, что Java и JavaScript чуть ли не один
+          в тот момент другого языка Java LiveScript был переименован в JavaScript. Однако данный момент до сих пор
+          иногда
+          приводит к некоторой путанице: некоторые начинающие разработчики считают, что Java и JavaScript чуть ли не
+          один
           и
           тот же язык. Нет, это абсолютно два разных языка, и они связаны только по названию.
         </p>
         <br>
         <p>
-          Первоначально JavaScript обладал довольно небольшими возможностями. Его цель состояла лишь в том, чтобы добавить
-          немного поведения на веб-страницу. Например, обработать нажатие кнопок на веб-странице, произвести какие-нибудь
+          Первоначально JavaScript обладал довольно небольшими возможностями. Его цель состояла лишь в том, чтобы
+          добавить
+          немного поведения на веб-страницу. Например, обработать нажатие кнопок на веб-странице, произвести
+          какие-нибудь
           другие действия, связанные прежде всего с элементами управления.
         </p>
         <br>
@@ -160,7 +166,8 @@
         </p>
         <br>
         <p>
-          Также JavaScript может применяться для создания десктопных приложений, например, благодаря таким фреймворкам как
+          Также JavaScript может применяться для создания десктопных приложений, например, благодаря таким фреймворкам
+          как
           Electron.
         </p>
         <br>
@@ -179,7 +186,8 @@
         </p>
         <br>
         <p>
-          Таким образом, вы можете встретить применение JavaScript практически повсюду. Сегодня это действительно один из
+          Таким образом, вы можете встретить применение JavaScript практически повсюду. Сегодня это действительно один
+          из
           самых популярных языков программирования, и его популярность еще будет расти.
         </p>
         <br>
@@ -199,7 +207,8 @@
           2023, который был издан в июне 2023 года. В последние годы новые стандарты выпускаются почти каждый год,
           понемногу
           добавляя новые возможности к языку. Однако реализация стандартов в браузерах занимает довольно продолжительное
-          время. Одни браузеры быстрее реализуют новые стандарты, другие медленнее. Кроме того, есть большой пласт старых
+          время. Одни браузеры быстрее реализуют новые стандарты, другие медленнее. Кроме того, есть большой пласт
+          старых
           версий браузеров, которыми простые пользователи продолжают пользоваться и которые естественно могут не
           поддерживать нововведения последних стандартов. И это надо учитывать при разработке программ на JavaScript. В
           данном же руководстве будут рассматриваться в основном те возможности JavaScript, которые поддерживаются всеми
@@ -214,8 +223,10 @@
         </p>
         <h3 class="text-3xl font-bold my-6">Необходимый инструментарий для разработки</h3>
         <p>
-          Для разработки на JavaScript нам потребуется прежде всего текстовый редактор для написания кода на данном языке
-          программирования. В качестве текстового редактора я советую использовать такую программу как Visual Studio Code.
+          Для разработки на JavaScript нам потребуется прежде всего текстовый редактор для написания кода на данном
+          языке
+          программирования. В качестве текстового редактора я советую использовать такую программу как Visual Studio
+          Code.
           Он бесплатен, имеет много возможностей, в частности, поддерживает подцветку синтаксиса JavaScript и является
           кроссплатформенным: может быть установлен как на Windows, так и на Linux и MacOS. Хотя этот может быть любой
           другой текстовый редактор.
@@ -224,7 +235,8 @@
         <p>
           Для проверки выполнения программы нам потребуется также интерпретатор JavaScript, который можем выполнять
           программы JavaScript. В качестве интерпретатора мы будем использовать с тандартный веб-браузер. Можно
-          использовать последние версии любых распространенных браузеров - Google Chrome, Microsoft Edge, Mozilla Firefox,
+          использовать последние версии любых распространенных браузеров - Google Chrome, Microsoft Edge, Mozilla
+          Firefox,
           Opera, Safari.
         </p>
         <br>
@@ -240,7 +252,7 @@
         </p>
       </div>
       <div class="buttons flex justify-between my-4 text-white font-bold text-lg items-center">
-        <button class="bg-red-600 p-3 rounded bg-transparent text-transparent"  disabled id="btn-prev">Назад</button>
+        <button class="bg-red-600 p-3 rounded bg-transparent text-transparent" disabled id="btn-prev">Назад</button>
         <div class="profile rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200">
           <a href="./profile.php">
             <img src="../img/avatar(1).webp" alt="">

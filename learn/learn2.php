@@ -4,7 +4,7 @@
 <?php include_once __DIR__ . '/components/mainHead.php' ?>
 
 
-<body>
+<body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
   <div class="wrapper dark:bg-gray-900">
     <?php
 

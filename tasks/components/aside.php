@@ -25,6 +25,9 @@ $results2 = $statement2->fetchAll(PDO::FETCH_NUM);
 
 $arrayId = [];
 
+$isAdmin = currentUser()["is_admin"]; 
+
+
 foreach ($results2 as $value) {
   foreach ($value as $key) {
     array_push($arrayId, $key);
@@ -44,6 +47,7 @@ $index = array_search($pageId, $arrayId);
 
       <?php
       $prev = null;
+
       echo "<span class=\"hidden\" id=\"arrayId\">" . array_key_exists($index + 1, $arrayId) . "</span>";
 
       foreach ($results1 as $value) {
@@ -54,10 +58,12 @@ $index = array_search($pageId, $arrayId);
         $prev = $value["name"];
       } ?>
 
+      <?php if($isAdmin == 1) {?>
       <a class="block pl-2 py-2 font-semibold bg-red-600 text-white hover:bg-red-700 hover:text-white"
         href="tasksAdding.php">
         ДОБАВЛЕНИЕ УПРАЖНЕНИЙ
       </a>
+      <?php } ?>
     </div>
 
   </div>
