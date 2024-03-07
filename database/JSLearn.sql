@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3305
--- Время создания: Мар 06 2024 г., 16:12
+-- Время создания: Мар 07 2024 г., 10:08
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `answers` (
   `id` int NOT NULL,
   `questions_id` int NOT NULL,
-  `answer` varchar(255) NOT NULL,
+  `answer` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `score` tinyint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -43,8 +43,8 @@ CREATE TABLE `answers` (
 CREATE TABLE `questions` (
   `id` int NOT NULL,
   `test_id` int NOT NULL,
-  `question` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `question` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -57,8 +57,8 @@ CREATE TABLE `results` (
   `test_id` int NOT NULL,
   `score_min` int NOT NULL,
   `score_max` int NOT NULL,
-  `result` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `result` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -70,9 +70,9 @@ CREATE TABLE `tasks` (
   `id` int NOT NULL,
   `task_number` int NOT NULL,
   `task_theme_id` int NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `task` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `task` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `tasks`
@@ -94,7 +94,8 @@ INSERT INTO `tasks` (`id`, `task_number`, `task_theme_id`, `title`, `task`) VALU
 (13, 2, 4, 'Создайте функцию под названием «myFunction».', '!function! !myFunction()! !{!\r\nalert(\"Hello World!\");\r\n!}!\r\n'),
 (14, 3, 4, 'Заставьте функцию возвращать «Привет».', 'function myFunction() {\r\n!return! \"!Привет!\";\r\n}\r\ndocument.getElementById(\"demo\").innerHTML = myFunction();'),
 (15, 4, 4, 'Сделайте так, чтобы функция отображала «Привет» во внутреннем HTML-коде элемента с идентификатором «demo».', 'function myFunction() {\r\n  document.!getElementById!(\"demo\").!innerHTML! = \"Привет\";\r\n}'),
-(16, 1, 14, 'Элемент <button> должен что-то делать, когда кто-то нажимает на него. Попробуйте это исправить!', '<button !onclick!=\"alert(\'Hello\')\">Click me.</button>');
+(16, 1, 14, 'Элемент <button> должен что-то делать, когда кто-то нажимает на него. Попробуйте это исправить!', '<button !onclick!=\"alert(\'Hello\')\">Click me.</button>'),
+(18, 5, 4, 'Выведите в консоль !\"Привет, мир!\"!', '!console.log!(\"Привет, мир!\");');
 
 -- --------------------------------------------------------
 
@@ -104,8 +105,8 @@ INSERT INTO `tasks` (`id`, `task_number`, `task_theme_id`, `title`, `task`) VALU
 
 CREATE TABLE `tasks_themes` (
   `id` int NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `tasks_themes`
@@ -127,8 +128,8 @@ INSERT INTO `tasks_themes` (`id`, `name`) VALUES
 
 CREATE TABLE `tests` (
   `id` int NOT NULL,
-  `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `tests`
@@ -149,19 +150,21 @@ CREATE TABLE `users` (
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL
+  `password` varchar(255) DEFAULT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `avatar`, `password`) VALUES
-(1, 'Кожахметов Никита', 'nikitakozahmetov@gmail.com', 'uploads/avatar_1708440158.jpg', '$2y$10$2b6VY3zqlSL9EGIaWYvVVOBIoZQN0YcREAiGE.NhG/8YBTpLnFU4O'),
-(2, '123', '123@gmail.com', 'uploads/avatar_1708440616.jpg', '$2y$10$opBOoL7AzQPoYa3H5o9reunPK3HCz1IQkZf6Xm9pq3dW8kehogDR.'),
-(3, '1234', '1234@gmail.com', 'uploads/avatar_1709110180.jpg', '$2y$10$cqI7AkNf1VDNoHdPCBR5ye.MHaSAzS9Jcymhm.HwZWSGQZOj29d0u'),
-(4, 'Некит', 'nekit@gmail.com', 'uploads/avatar_1709193440.jpg', '$2y$10$j2n48U7lztni.ZzvBf4gxuTVSo1xXvikxI0hleNgY4lockqGHm6dq'),
-(5, 'Никита Кожахметов', 'JSLearn@gmail.com', 'uploads/avatar_1709292355.jpg', '$2y$10$hmsFnYlqTHwZLM0enBR7ne3tGitMBIV.qIETvuAG0iFrSucOhw.Fq');
+INSERT INTO `users` (`id`, `name`, `email`, `avatar`, `password`, `is_admin`) VALUES
+(1, 'Кожахметов Никита', 'nikitakozahmetov@gmail.com', 'uploads/avatar_1708440158.jpg', '$2y$10$2b6VY3zqlSL9EGIaWYvVVOBIoZQN0YcREAiGE.NhG/8YBTpLnFU4O', 0),
+(2, '123', '123@gmail.com', 'uploads/avatar_1708440616.jpg', '$2y$10$opBOoL7AzQPoYa3H5o9reunPK3HCz1IQkZf6Xm9pq3dW8kehogDR.', 0),
+(3, '1234', '1234@gmail.com', 'uploads/avatar_1709110180.jpg', '$2y$10$cqI7AkNf1VDNoHdPCBR5ye.MHaSAzS9Jcymhm.HwZWSGQZOj29d0u', 0),
+(4, 'Некит', 'nekit@gmail.com', 'uploads/avatar_1709193440.jpg', '$2y$10$j2n48U7lztni.ZzvBf4gxuTVSo1xXvikxI0hleNgY4lockqGHm6dq', 0),
+(5, 'Никита Кожахметов', 'JSLearn@gmail.com', 'uploads/avatar_1709292355.jpg', '$2y$10$hmsFnYlqTHwZLM0enBR7ne3tGitMBIV.qIETvuAG0iFrSucOhw.Fq', 1),
+(10, 'IDDQD', 'IDDQD@gmail.com', 'uploads/avatar_1709791890.jpg', '$2y$10$td5VGS3m9tzwwaQUTNPYV.brMAiYOe77hYbRCJygeBz6NkOLEH0dG', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -238,7 +241,7 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT для таблицы `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `tasks_themes`
@@ -256,7 +259,7 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
