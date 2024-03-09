@@ -36,18 +36,16 @@ function showAnswer() {
 }
 
 // Вычисляет размер инпутов по размеру ответов, чтобы они не были на пол экрана
-function changeSizeOfInputs() {
-  const inputsArray = answersStr.split(' ');
+const inputsArray = answersStr.split(' ');
 
-  for (let index = 0; index < inputsArray.length; index++) {
-    const input = arrayInputs[index];
+for (let index = 0; index < inputsArray.length; index++) {
+  const input = arrayInputs[index];
 
-    let width = inputsArray[index].length * 10;
+  let width = inputsArray[index].length * 10;
 
-    input.style.width = width + "px";
-    input.style.height = "21px";
-    input.setAttribute("maxlength", inputsArray[index].length);
-  }
+  input.style.width = width + "px";
+  input.style.height = "21px";
+  input.setAttribute("maxlength", inputsArray[index].length);
 }
 
 

@@ -32,12 +32,12 @@ for (const btn of btnNext) {
 // Переключение темы
 function switchTheme() {
   const switchBtn = document.getElementById("themeBtn");
+  switchBtn.getAttribute("src") == "../img/free-icon-dark-mode-12657259.webp" ? switchBtn.setAttribute("src", "../img/free-icon-dark-mode-12657273.webp") : switchBtn.setAttribute("src", "../img/free-icon-dark-mode-12657259.webp");
   document.body.classList.toggle("dark");
 
   // Сохранение выбора темы в cookie
   const isDarkMode = document.body.classList.contains("dark");
   document.cookie = `isDarkMode=${isDarkMode}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
 }
-
 
 

@@ -24,7 +24,7 @@ include_once "components/taskScript.php";
       class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
   </div>
   <?php require_once "components/aside.php"; ?>
-  <main class="pt-64 pb-10 mx-auto w-3/5" onclick="changeSizeOfInputs()" id="click">
+  <main class="pt-64 pb-10 mx-auto w-3/5" id="click">
     <h2 class="text-5xl mb-5">Упражнение:</h2>
     <p class="mb-5 text-lg">
       <?php echo $title ?>
