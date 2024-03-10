@@ -1063,20 +1063,16 @@ video {
   padding-top: 9rem;
 }
 
+.pt-40 {
+  padding-top: 10rem;
+}
+
 .pt-64 {
   padding-top: 16rem;
 }
 
 .pt-\[110px\] {
   padding-top: 110px;
-}
-
-.pt-40 {
-  padding-top: 10rem;
-}
-
-.pt-44 {
-  padding-top: 11rem;
 }
 
 .text-center {

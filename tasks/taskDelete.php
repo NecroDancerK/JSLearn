@@ -1,0 +1,105 @@
+<?php
+require_once "../php/helpers.php";
+$isAdmin = currentUser()["is_admin"];
+if ($isAdmin == 1) { ?>
+
+  <?php
+  $pdo = getPDO();
+
+  $pageId = isset($_GET['task']) ? $_GET['task'] : null;
+
+
+
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+    if (isset($_POST['taskId'])) {
+      // Удаление упражнения из базы данных
+      $stmt = $pdo->prepare('DELETE FROM tasks WHERE id = ?');
+      $stmt->execute([$_POST['taskId']]);
+
+      $query = "SELECT id FROM `tasks`;";
+      $statement = $pdo->query($query);
+
+      $results = $statement->fetchAll(PDO::FETCH_NUM);
+
+      // Перенаправление на страницу со списком упражнений
+      header("Location: tasks.php?task=" . $results[0][0]);
+      exit();
+    } else {
+      // Если параметр не передан, перенаправляем на главную страницу
+      header('Location: index.php');
+      exit();
+    }
+
+  }
+  ?>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <?php
+  include_once "components/mainHead.php";
+  include_once "components/taskScript.php";
+
+
+  ?>
+
+  <body>
+    <?php
+
+    require_once "components/header.php";
+
+    $pdo = getPDO();
+
+    $query = "SELECT id FROM `tasks`;";
+    $statement = $pdo->query($query);
+
+    $results = $statement->fetchAll(PDO::FETCH_NUM);
+    ?>
+    <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
+      <a href="../learn/learn1.php"
+        class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Учебник</a>
+      <a href="tasks.php?task=<?php
+      if (!empty($results)) {
+        echo $results[0][0];
+      }
+      ?>"
+        class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
+      <a href="../tests.php"
+        class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
+      <a href="../playground.php"
+        class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
+    </div>
+    <?php require_once "components/aside.php"; ?>
+    <main class="pt-64 pb-10 mx-auto w-3/5" id="click">
+
+      <h2 class="text-5xl mb-5">Удаление упражнения:</h2>
+      <p class="mb-5 text-lg">
+        <?php echo $title ?>
+      </p>
+
+      <div class="exercise bg-gray-200 w-full h-64 rounded relative mb-7 pt-3">
+        <pre class="pl-4">
+          <p class="text-lg"><?php echo $task ?></p>
+          </pre>
+      </div>
+      <form class="flex justify-between items-center" action="taskDelete.php" method="post">
+        <p class="text-2xl"><span class="font-bold">Вы</span> уверены, что хотите удалить это упражнение?</p>
+        <input type="text" name="taskId" class="hidden" value="<?php echo $pageId ?>">
+        <button class="bg-red-600 p-3 px-5 rounded-full text-white font-bold" type="submit">Удалить упражнение</button>
+      </form>
+
+
+    </main>
+
+
+    <?php include_once 'components/scripts.php' ?>
+    <script src="../js/taskDelete.js"></script>
+  </body>
+
+  </html>
+<?php } else {
+  header("Location: ../index.php");
+  exit();
+}
+?>

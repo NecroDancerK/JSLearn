@@ -37,7 +37,7 @@ if ($pageId !== null && is_numeric($pageId)) {
 
 
     $task = preg_replace($RegExp, "<input type=\"text\" class=\"inputTask\">", $task);
-
+    
 
     for ($i = 0; $i < count($RegExpResTitle[0]); $i++) {
       $title = str_replace($RegExpResTitle[0][$i], "<span class=\"font-bold\">" . $RegExpResTitle[1][$i] . "</span>", $title);
