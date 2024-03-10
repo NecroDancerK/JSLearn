@@ -36,8 +36,11 @@ if ($pageId !== null && is_numeric($pageId)) {
     $task = escape_tags($task);
 
 
-    $task = preg_replace($RegExp, "<input type=\"text\" class=\"inputTask\">", $task);
+    $task = preg_replace($RegExp, "<input type=\"text\" class=\"inputTask dark:bg-gray-800\">", $task);
     
+    /* for ($i = 0; $i < count($RegExpResTask[0]); $i++) {
+      $task = str_replace($RegExpResTask[0][$i], "<input type=\"text\" class=\"inputTask dark:bg-gray-800\">", $task);
+    } */
 
     for ($i = 0; $i < count($RegExpResTitle[0]); $i++) {
       $title = str_replace($RegExpResTitle[0][$i], "<span class=\"font-bold\">" . $RegExpResTitle[1][$i] . "</span>", $title);

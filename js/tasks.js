@@ -21,7 +21,7 @@ function showAnswer() {
       showButton.innerText = "Скрыть ответ";
       input.value = answersArray[index];
       input.setAttribute("readonly", "readonly");
-      input.style.color = "blue";
+      input.style.color = "red";
     } else {
       showButton.innerText = "Показать ответ";
 

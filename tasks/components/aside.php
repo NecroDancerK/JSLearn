@@ -44,7 +44,7 @@ $index = array_search($pageId, $arrayId);
 
 ?>
 
-<aside class="siderbar fixed top-0 left-0 h-full mt-[110px] bg-gray-100 2xl:w-[330px] w-[260px] flex flex-col">
+<aside class="siderbar fixed top-0 left-0 h-full mt-[110px] bg-gray-100 dark:bg-slate-800 dark:text-white 2xl:w-[330px] w-[260px] flex flex-col">
   <div class="scrollbox overflow-auto">
     <div class="scrollbox-inner pb-[110px] tasksAside" id="sidebar-content">
 
