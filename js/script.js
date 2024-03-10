@@ -9,7 +9,7 @@ const sidebarItems = sidebar.getElementsByTagName("a");
 const currentURL = window.location.href.split("/").pop();
 
 for (const item of sidebarItems) {
-  if (item.getAttribute("href") == currentURL) {
+  if (item.getAttribute("href").match(/\d+/)[0] == currentURL.match(/\d+/)[0]) {
     item.classList.remove("hover:bg-neutral-500", "hover:text-white");
     item.classList.add("bg-red-600", "text-white");
   }

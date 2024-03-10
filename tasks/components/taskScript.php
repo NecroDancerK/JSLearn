@@ -11,37 +11,53 @@ function escape_tags($string)
 
 $pdo = getPDO();
 
-$pageId = $_GET['task'];
+$pageId = isset($_GET['task']) ? $_GET['task'] : null;
+
+if ($pageId !== null && is_numeric($pageId)) {
+  $query = "SELECT title, task FROM tasks WHERE id = ?";
+  $statement1 = $pdo->prepare($query);
+  $statement1->execute([$pageId]);
+
+  $results1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
+
+  if (count($results1) > 0) {
+    $title = $results1[0]["title"];
+    $task = $results1[0]["task"];
+
+    $RegExp = '/!(.*?)!/';
+
+    $RegExpResTask = [];
+    $RegExpResTitle = [];
+
+    preg_match_all($RegExp, $task, $RegExpResTask);
+    preg_match_all($RegExp, $title, $RegExpResTitle);
+
+    $title = escape_tags($title);
+    $task = escape_tags($task);
 
 
-$query = "SELECT title, task FROM tasks WHERE id = $pageId";
-$statement1 = $pdo->query($query);
+    $task = preg_replace($RegExp, "<input type=\"text\" class=\"inputTask dark:bg-gray-800\">", $task);
+    
+    /* for ($i = 0; $i < count($RegExpResTask[0]); $i++) {
+      $task = str_replace($RegExpResTask[0][$i], "<input type=\"text\" class=\"inputTask dark:bg-gray-800\">", $task);
+    } */
 
-$results1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
+    for ($i = 0; $i < count($RegExpResTitle[0]); $i++) {
+      $title = str_replace($RegExpResTitle[0][$i], "<span class=\"font-bold\">" . $RegExpResTitle[1][$i] . "</span>", $title);
+    }
 
-$title = $results1[0]["title"];
-$task = $results1[0]["task"];
+    $answersStr = implode(" ", $RegExpResTask[1]);
 
-$RegExp = '/!(.*?)!/';
+    echo "<span class=\"hidden\" id=\"answersStr\">$answersStr</span>";
 
-$RegExpResTask = [];
-$RegExpResTitle = [];
-
-preg_match_all($RegExp, $task, $RegExpResTask);
-preg_match_all($RegExp, $title, $RegExpResTitle);
-
-$title = escape_tags($title);
-$task = escape_tags($task);
-
-
-$task = preg_replace($RegExp, "<input type=\"text\" class=\"inputTask\">", $task);
-
-
-for ($i = 0; $i < count($RegExpResTitle[0]); $i++) {
-  $title = str_replace($RegExpResTitle[0][$i], "<span class=\"font-bold\">" . $RegExpResTitle[1][$i] . "</span>", $title);
+  }
 }
+// $query = "SELECT title, task FROM tasks WHERE id = $pageId";
+// $statement1 = $pdo->query($query);
 
-$answersStr = implode(" ", $RegExpResTask[1]);
+// $results1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
 
-echo "<span class=\"hidden\" id=\"answersStr\">$answersStr</span>";
+// $title = $results1[0]["title"];
+// $task = $results1[0]["task"];
+
 
