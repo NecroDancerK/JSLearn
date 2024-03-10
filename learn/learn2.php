@@ -10,12 +10,20 @@
 
     require_once "components/header.php";
 
+    require_once "../php/helpers.php";
+
+    $pdo = getPDO();
+
+    $query = "SELECT id FROM `tasks`;";
+    $statement = $pdo->query($query);
+
+    $results = $statement->fetchAll(PDO::FETCH_NUM);
     ?>
 
 
     <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
       <a href="learn.php" class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold">Учебник</a>
-      <a href="../tasks/tasks1.php"
+      <a href="../tasks/tasks.php?task=<?php echo $results[0][0] ?>"
         class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
       <a href="../tests.php"
         class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
@@ -212,7 +220,8 @@
 
       <div class="buttons flex justify-between my-4 text-white font-bold text-lg items-center">
         <a class="bg-red-600 p-3 rounded" href="learn.php" id="btn-prev">Назад</a>
-        <div class="profile rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700">
+        <div
+          class="profile rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700">
           <a href="./profile.php">
             <img src="../img/avatar(1).webp" alt="">
           </a>

@@ -20,12 +20,21 @@
 
   require_once "components/header.php";
 
+  require_once "php/helpers.php";
+
+  $pdo = getPDO();
+
+  $query = "SELECT id FROM `tasks`;";
+  $statement = $pdo->query($query);
+
+  $results = $statement->fetchAll(PDO::FETCH_NUM);
+
   ?>
 
   <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
     <a href="learn/learn1.php"
       class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Учебник</a>
-    <a href="tasks/tasks1.php"
+    <a href="tasks/tasks.php?task=<?php echo $results[0][0] ?>"
       class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
     <a href="tests.php"
       class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
