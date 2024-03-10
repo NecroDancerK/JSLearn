@@ -31,7 +31,7 @@
         class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
     </div>
     <?php require_once "components/aside.php" ?>
-    <main class="pt-36 pb-10 mx-auto w-3/5 border px-7  dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
+    <main class="pt-36 pb-10 mx-auto w-3/5 border dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
       <h3 class="text-3xl font-bold mb-6">Первая программа на JavaScript</h3>
 
       <div class="buttons flex justify-between my-4 text-white font-bold text-lg">
