@@ -4,13 +4,15 @@ require_once "../php/helpers.php";
 
 $pdo = getPDO();
 
-$URLArray = explode('/', $_SERVER['REQUEST_URI']);
+// $URLArray = explode('/', $_SERVER['REQUEST_URI']);
 
-$currentURL = end($URLArray);
+// $currentURL = end($URLArray);
 
-preg_match('/\d+/', $currentURL, $matches);
+// preg_match('/\d+/', $currentURL, $matches);
 
-$pageId = intval($matches[0]);
+// $pageId = intval($matches[0]);
+
+$pageId = $_GET['task'];
 
 
 $query1 = "SELECT tasks.id, tasks.task_number, tasks.task_theme_id, tasks_themes.name FROM `tasks` JOIN tasks_themes ON tasks.task_theme_id = tasks_themes.id ORDER BY `tasks`.`task_theme_id` ASC;";
@@ -23,9 +25,10 @@ $statement2 = $pdo->query($query2);
 
 $results2 = $statement2->fetchAll(PDO::FETCH_NUM);
 
+
 $arrayId = [];
 
-$isAdmin = currentUser()["is_admin"]; 
+$isAdmin = currentUser()["is_admin"];
 
 
 foreach ($results2 as $value) {
@@ -48,21 +51,28 @@ $index = array_search($pageId, $arrayId);
       <?php
       $prev = null;
 
+
       echo "<span class=\"hidden\" id=\"arrayId\">" . array_key_exists($index + 1, $arrayId) . "</span>";
 
       foreach ($results1 as $value) {
         if ($value["name"] !== $prev) {
           echo "<h3 class=\"text-xl font-bold mb-2 pl-2 mt-4\">{$value["name"]}</h3>";
         }
-        echo "<a class=\"block pl-2 py-2  font-semibold hover:bg-neutral-500 hover:text-white\" href=\"tasks{$value["id"]}.php\">Упражнение {$value['task_number']}</a>";
+        echo "<a class=\"block pl-2 py-2  font-semibold hover:bg-neutral-500 hover:text-white\" href=\"tasks.php?task={$value["id"]}\">Упражнение {$value['task_number']}</a>";
         $prev = $value["name"];
       } ?>
-
-      <?php if($isAdmin == 1) {?>
-      <a class="block pl-2 py-2 font-semibold bg-red-600 text-white hover:bg-red-700 hover:text-white"
-        href="tasksAdding.php">
-        ДОБАВЛЕНИЕ УПРАЖНЕНИЙ
+      <a class="flex pl-2 py-2 relative font-semibold hover:bg-neutral-500 hover:text-white" href="tasksAdding.php">
+        Упражнение
+        <form action="taskChange.php" method="get"><button class="bg-red-600 absolute z-10 right-14"
+            type="submit">Изм.</button></form>
+        <form action="taskDelete.php" method="get"><button class="bg-red-600 absolute z-10 right-2"
+            type="submit">Удал.</button></form>
       </a>
+      <?php if ($isAdmin == 1) { ?>
+        <a class="block pl-2 py-2 font-semibold bg-red-600 text-white hover:bg-red-700 hover:text-white"
+          href="tasksAdding.php">
+          ДОБАВЛЕНИЕ УПРАЖНЕНИЙ
+        </a>
       <?php } ?>
     </div>
 

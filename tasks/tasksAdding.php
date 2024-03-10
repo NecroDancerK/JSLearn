@@ -1,170 +1,177 @@
 <?php
-
 require_once "../php/helpers.php";
+$isAdmin = currentUser()["is_admin"];
+if ($isAdmin == 1) { ?>
+  <?php
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  $taskNumber = $_POST["taskNumber"];
-  $title = $_POST["title"];
-  $task = $_POST["task"];
-  $taskTheme = $_POST["taskTheme"];
-  $newTheme = $_POST["newTheme"];
+  require_once "../php/helpers.php";
 
-  echo $newTheme;
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $taskNumber = $_POST["taskNumber"];
+    $title = $_POST["title"];
+    $task = $_POST["task"];
+    $taskTheme = $_POST["taskTheme"];
+    $newTheme = $_POST["newTheme"];
+
+    echo $newTheme;
 
 
 
-  if (!empty($title) && !empty($task) && !empty($taskNumber) && !empty($taskTheme)) {
-    $pdo = getPDO();
+    if (!empty($title) && !empty($task) && !empty($taskNumber) && !empty($taskTheme)) {
+      $pdo = getPDO();
 
-    if (!empty($newTheme)) {
+      if (!empty($newTheme)) {
 
-      // Проверяем, существует ли уже такая тема в базе данных
-      $stmt = $pdo->prepare("SELECT * FROM tasks_themes WHERE name = :newTheme");
-      $stmt->execute(array(':newTheme' => $newTheme));
-      $existingTheme = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      // Если тема уже существует, выводим сообщение об ошибке
-      if ($existingTheme) {
-        echo "Ошибка: Тема \"$newTheme\" уже существует.";
-      } else {
-        // Вставляем новую тему в базу данных
-        $stmt = $pdo->prepare("INSERT INTO tasks_themes (name) VALUES (:newTheme)");
+        // Проверяем, существует ли уже такая тема в базе данных
+        $stmt = $pdo->prepare("SELECT * FROM tasks_themes WHERE name = :newTheme");
         $stmt->execute(array(':newTheme' => $newTheme));
-      }
+        $existingTheme = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      $stmt = $pdo->prepare("SELECT id FROM tasks_themes WHERE name = :newTheme");
-      $stmt->execute(array(':newTheme' => $newTheme));
-      $taskThemeArray = $stmt->fetch(PDO::FETCH_ASSOC);
-      $taskTheme = $taskThemeArray["id"];
+        // Если тема уже существует, выводим сообщение об ошибке
+        if ($existingTheme) {
+          echo "Ошибка: Тема \"$newTheme\" уже существует.";
+        } else {
+          // Вставляем новую тему в базу данных
+          $stmt = $pdo->prepare("INSERT INTO tasks_themes (name) VALUES (:newTheme)");
+          $stmt->execute(array(':newTheme' => $newTheme));
+        }
 
-      $sql = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
+        $stmt = $pdo->prepare("SELECT id FROM tasks_themes WHERE name = :newTheme");
+        $stmt->execute(array(':newTheme' => $newTheme));
+        $taskThemeArray = $stmt->fetch(PDO::FETCH_ASSOC);
+        $taskTheme = $taskThemeArray["id"];
 
-      // Подготавливаем выражение
-      $stmt = $pdo->prepare($sql);
+        $sql = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
 
-      // Передаем значения переменных и выполняем запрос
-      try {
-        $stmt->execute(
-          array(
-            ':task_number' => $taskNumber,
-            ':task_theme_id' => $taskTheme,
-            ':title' => $title,
-            ':task' => $task,
-          )
-        );
-      } catch (PDOException $e) {
-        die("Ошибка при добавлении данных: " . $e->getMessage());
-      }
-    } else {
-      $sql = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
+        // Подготавливаем выражение
+        $stmt = $pdo->prepare($sql);
 
-      // Подготавливаем выражение
-      $stmt = $pdo->prepare($sql);
+        // Передаем значения переменных и выполняем запрос
+        try {
+          $stmt->execute(
+            array(
+              ':task_number' => $taskNumber,
+              ':task_theme_id' => $taskTheme,
+              ':title' => $title,
+              ':task' => $task,
+            )
+          );
+        } catch (PDOException $e) {
+          die("Ошибка при добавлении данных: " . $e->getMessage());
+        }
+      } else {
+        $sql = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
 
-      // Передаем значения переменных и выполняем запрос
-      try {
-        $stmt->execute(
-          array(
-            ':task_number' => $taskNumber,
-            ':task_theme_id' => $taskTheme,
-            ':title' => $title,
-            ':task' => $task,
-          )
-        );
-      } catch (PDOException $e) {
-        die("Ошибка при добавлении данных: " . $e->getMessage());
+        // Подготавливаем выражение
+        $stmt = $pdo->prepare($sql);
+
+        // Передаем значения переменных и выполняем запрос
+        try {
+          $stmt->execute(
+            array(
+              ':task_number' => $taskNumber,
+              ':task_theme_id' => $taskTheme,
+              ':title' => $title,
+              ':task' => $task,
+            )
+          );
+        } catch (PDOException $e) {
+          die("Ошибка при добавлении данных: " . $e->getMessage());
+        }
       }
     }
   }
-}
 
-$pdo = getPDO();
+  $pdo = getPDO();
 
-$stmt = $pdo->prepare("SELECT * FROM `tasks_themes`");
+  $stmt = $pdo->prepare("SELECT * FROM `tasks_themes`");
 
-$stmt->execute();
+  $stmt->execute();
 
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-require_once "tasksChecking.php";
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<?php
-include_once "components/mainHead.php";
-?>
-
-<body>
-  <?php
-
-  require_once "components/header.php";
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   ?>
-  <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
-    <a href="../learn/learn1.php"
-      class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Учебник</a>
-    <a href="tasks1.php" class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
-    <a href="../tests.php"
-      class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
-    <a href="../playground.php"
-      class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
-  </div>
-  <?php require_once "components/aside.php"; ?>
-  <main class="pt-28 pb-10 mx-auto w-3/5" id="click">
-    <h2 class="text-5xl mb-5">Добавление упражнений:</h2>
-    <form class="flex flex-col gap-4 bg-gray-200 p-7 text-xl rounded" action="tasksAdding.php" method="post">
-      <label>
-        Номер задания (Пойдет в название упражнения):
-        <input class="border border-red-600 rounded" type="number" name="taskNumber" min="1">
-      </label>
-      <label>
-        Тема задания:
-        <select class="border border-red-600 bg-white rounded" name="taskTheme" id="taskTheme">
-          <option value="">Выберите тему</option>
-          <?php
-          foreach ($result as $array) {
-            echo "<option value=\"{$array['id']}\">{$array['name']}</option>";
-          }
-          ?>
-          <option value="newTheme" id="newTheme">Добавить тему:</option>
-        </select>
-      </label>
-      <label id="newThemeInput" class="hidden ">
-        Название темы:
-        <input class="border border-red-600 bg-white rounded" type="text" name="newTheme">
-      </label>
-      <label class="flex flex-col">
-        Описание задания (Оберните в восклицательные знаки слова, которые вы хотите выделить в описании задания жирным
-        текстом.
-        Пример: Создайте переменную с именем !carName!, присвойте ей значение !Volvo!. Получится: <div>
-          Создайте
-          переменную с именем <span class="font-bold ">carName</span>, присвойте ей значение <span
-            class="font-bold ">Volvo</span>.):
-        </div>
-        <textarea class="border border-red-600 mt-4 resize-none h-28 rounded" name="title"></textarea>
-      </label>
-      <label class="mb-7 flex flex-col">
-        Задание (Оберните в восклицательные знаки слова, которые вы хотите сделать пропусками. Пример: let !carName! =
-        <div>
-          "!Volvo!". Получится: let <input type="text" class="inputTask border border-black"
-            style="width: 70px; height: 21px;" maxlength="7" disabled>
-          = "<input type="text" class="inputTask border border-black" style="width: 50px; height: 21px;" maxlength="5"
-            disabled>"):
-        </div>
-        <textarea class="border border-red-600 mt-4 resize-none h-28 rounded" name="task"></textarea>
-      </label>
 
-      <button class="bg-red-600 text-white p-3 text-xl rounded-full" type="submit">Добавить задание</button>
-    </form>
+  <!DOCTYPE html>
+  <html lang="en">
 
-    <script src="../js/taskAdding.js"></script>
-  </main>
-  <!-- <footer></footer> -->
+  <?php
+  include_once "components/mainHead.php";
+  ?>
 
-  <?php include_once "components/scripts.php" ?>
+  <body>
+    <?php
 
-</body>
+    require_once "components/header.php";
 
-</html>
+    ?>
+    <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
+      <a href="../learn/learn1.php"
+        class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Учебник</a>
+      <a href="tasks.php?task=1" class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
+      <a href="../tests.php"
+        class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
+      <a href="../playground.php"
+        class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
+    </div>
+    <?php require_once "components/aside.php"; ?>
+    <main class="pt-28 pb-10 mx-auto w-3/5" id="click">
+      <h2 class="text-5xl mb-5">Добавление упражнений:</h2>
+      <form class="flex flex-col gap-4 bg-gray-200 p-7 text-xl rounded" action="tasksAdding.php" method="post">
+        <label>
+          Номер задания (Пойдет в название упражнения):
+          <input class="border border-red-600 rounded" type="number" name="taskNumber" min="1">
+        </label>
+        <label>
+          Тема задания:
+          <select class="border border-red-600 bg-white rounded" name="taskTheme" id="taskTheme">
+            <option value="">Выберите тему</option>
+            <?php
+            foreach ($result as $array) {
+              echo "<option value=\"{$array['id']}\">{$array['name']}</option>";
+            }
+            ?>
+            <option value="newTheme" id="newTheme">Добавить тему:</option>
+          </select>
+        </label>
+        <label id="newThemeInput" class="hidden ">
+          Название темы:
+          <input class="border border-red-600 bg-white rounded" type="text" name="newTheme">
+        </label>
+        <label class="flex flex-col">
+          Описание задания (Оберните в восклицательные знаки слова, которые вы хотите выделить в описании задания жирным
+          текстом.
+          Пример: Создайте переменную с именем !carName!, присвойте ей значение !Volvo!. Получится: <div>
+            Создайте
+            переменную с именем <span class="font-bold ">carName</span>, присвойте ей значение <span
+              class="font-bold ">Volvo</span>.):
+          </div>
+          <textarea class="border border-red-600 mt-4 resize-none h-28 rounded" name="title"></textarea>
+        </label>
+        <label class="mb-7 flex flex-col">
+          Задание (Оберните в восклицательные знаки слова, которые вы хотите сделать пропусками. Пример: let !carName! =
+          <div>
+            "!Volvo!". Получится: let <input type="text" class="inputTask border border-black"
+              style="width: 70px; height: 21px;" maxlength="7" disabled>
+            = "<input type="text" class="inputTask border border-black" style="width: 50px; height: 21px;" maxlength="5"
+              disabled>"):
+          </div>
+          <textarea class="border border-red-600 mt-4 resize-none h-28 rounded" name="task"></textarea>
+        </label>
+
+        <button class="bg-red-600 text-white p-3 text-xl rounded-full" type="submit">Добавить задание</button>
+      </form>
+
+      <script src="../js/taskAdding.js"></script>
+    </main>
+    <!-- <footer></footer> -->
+
+    <?php include_once "components/scripts.php" ?>
+
+  </body>
+
+  </html>
+<?php } else
+  header("Location: tasks.php?task=1");
+exit();
+?>

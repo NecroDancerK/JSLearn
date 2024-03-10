@@ -1,7 +1,8 @@
 <?php
 require_once "../php/helpers.php";
 
-function escape_tags($string) {
+function escape_tags($string)
+{
   $string = str_replace("<", "&lt;", $string);
   $string = str_replace(">", "&gt;", $string);
   return $string;
@@ -10,13 +11,7 @@ function escape_tags($string) {
 
 $pdo = getPDO();
 
-$URLArray = explode('/', $_SERVER['REQUEST_URI']);
-
-$currentURL = end($URLArray);
-
-preg_match('/\d+/', $currentURL, $matches);
-
-$pageId = intval($matches[0]);
+$pageId = $_GET['task'];
 
 
 $query = "SELECT title, task FROM tasks WHERE id = $pageId";
@@ -35,6 +30,7 @@ $RegExpResTitle = [];
 preg_match_all($RegExp, $task, $RegExpResTask);
 preg_match_all($RegExp, $title, $RegExpResTitle);
 
+$title = escape_tags($title);
 $task = escape_tags($task);
 
 
@@ -48,3 +44,4 @@ for ($i = 0; $i < count($RegExpResTitle[0]); $i++) {
 $answersStr = implode(" ", $RegExpResTask[1]);
 
 echo "<span class=\"hidden\" id=\"answersStr\">$answersStr</span>";
+
