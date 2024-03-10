@@ -157,12 +157,12 @@ if ($isAdmin == 1) { ?>
             "!Volvo!". Получится: let <input type="text" class="inputTask border border-black"
               style="width: 70px; height: 21px;" maxlength="7" disabled>
             = "<input type="text" class="inputTask border border-black" style="width: 50px; height: 21px;" maxlength="5"
-              disabled>"):
+              disabled>".):
           </div>
           <textarea class="border border-red-600 mt-4 resize-none h-28 rounded" name="task"></textarea>
         </label>
 
-        <button class="bg-red-600 text-white p-3 text-xl rounded-full" type="submit">Добавить задание</button>
+        <button class="bg-red-600 text-white p-3 text-xl rounded-full" type="submit">Добавить упражнение</button>
       </form>
 
       <script src="../js/taskAdding.js"></script>
@@ -174,13 +174,8 @@ if ($isAdmin == 1) { ?>
   </body>
 
   </html>
-<?php } else
-  $pdo = getPDO();
-
-$query = "SELECT id FROM `tasks`;";
-$statement = $pdo->query($query);
-
-$results = $statement->fetchAll(PDO::FETCH_NUM);
-header("Location: tasks.php?task=" . $results[0][0]);
-// exit();
+<?php } else {
+  header("Location: ../index.php");
+  exit();
+}
 ?>

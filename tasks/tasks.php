@@ -32,10 +32,12 @@ include_once "components/taskScript.php";
   </div>
   <?php require_once "components/aside.php"; ?>
   <main class="pt-64 pb-10 mx-auto w-3/5" id="click">
+    
     <h2 class="text-5xl mb-5">Упражнение:</h2>
     <p class="mb-5 text-lg">
       <?php echo $title ?>
     </p>
+    
     <div class="exercise bg-gray-200 w-full h-64 rounded relative mb-7 pt-3">
       <pre class="pl-4">
         <p class="text-lg"><?php echo $task ?></p>
@@ -67,6 +69,7 @@ include_once "components/taskScript.php";
       id="checkButton">Подтвердить
       ответ</button>
     <a class="bg-red-600 p-3 px-5 rounded-full text-white font-bold hidden nextButton" <?php echo "href=\"tasks.php?task={$arrayId[$index + 1]}\""; ?> id="nextButton">Следующий</a>
+    
   </main>
   <!-- <footer></footer> -->
 
