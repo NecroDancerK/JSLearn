@@ -58,16 +58,30 @@ $index = array_search($pageId, $arrayId);
         if ($value["name"] !== $prev) {
           echo "<h3 class=\"text-xl font-bold mb-2 pl-2 mt-4\">{$value["name"]}</h3>";
         }
-        echo "<a class=\"block pl-2 py-2  font-semibold hover:bg-neutral-500 hover:text-white\" href=\"tasks.php?task={$value["id"]}\">Упражнение {$value['task_number']}</a>";
-        $prev = $value["name"];
+        echo "<a class=\"group flex pl-2 py-2 relative  font-semibold hover:bg-neutral-500 hover:text-white\" href=\"tasks.php?task={$value["id"]}\">Упражнение {$value['task_number']}" ?>
+        <?php if ($isAdmin == 1) { ?>
+          <form action="taskChange.php" method="get"><button
+              class="opacity-0 group-hover:opacity-100 transition-all duration-200 bg-gray-800 absolute z-10 right-10 hover:bg-black  text-white px-1"
+              type="submit"><i class="fa-solid fa-pen"></i></button></form>
+          <form action="taskDelete.php" method="get"><button
+              class="opacity-0 group-hover:opacity-100 transition-all duration-200 bg-gray-800 absolute z-10 right-2 hover:bg-black text-white px-[5px]"
+              type="submit"><i class="fa-solid fa-trash"></i></button></form>
+        <?php } ?>
+        </a>
+        <?php $prev = $value["name"];
       } ?>
-      <a class="flex pl-2 py-2 relative font-semibold hover:bg-neutral-500 hover:text-white" href="tasksAdding.php">
+<!--       <a class="group flex pl-2 py-2 relative font-semibold hover:bg-neutral-500 hover:text-white"
+        href="tasksAdding.php">
         Упражнение
-        <form action="taskChange.php" method="get"><button class="bg-red-600 absolute z-10 right-14"
-            type="submit">Изм.</button></form>
-        <form action="taskDelete.php" method="get"><button class="bg-red-600 absolute z-10 right-2"
-            type="submit">Удал.</button></form>
-      </a>
+        <?php if ($isAdmin == 1) { ?>
+          <form action="taskChange.php" method="get"><button
+              class="opacity-0 group-hover:opacity-100 transition-all duration-200 bg-red-600 absolute z-10 right-10 hover:bg-red-700 text-white px-1"
+              type="submit"><i class="fa-solid fa-pen"></i></button></form>
+          <form action="taskDelete.php" method="get"><button
+              class="opacity-0 group-hover:opacity-100 transition-all duration-200 bg-red-600 absolute z-10 right-2 hover:bg-red-700 text-white px-[5px]"
+              type="submit"><i class="fa-solid fa-trash"></i></button></form>
+        <?php } ?>
+      </a> -->
       <?php if ($isAdmin == 1) { ?>
         <a class="block pl-2 py-2 font-semibold bg-red-600 text-white hover:bg-red-700 hover:text-white"
           href="tasksAdding.php">

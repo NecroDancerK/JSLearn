@@ -104,6 +104,8 @@ if ($isAdmin == 1) { ?>
 
     require_once "components/header.php";
 
+
+
     ?>
     <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
       <a href="../learn/learn1.php"
@@ -127,6 +129,7 @@ if ($isAdmin == 1) { ?>
           <select class="border border-red-600 bg-white rounded" name="taskTheme" id="taskTheme">
             <option value="">Выберите тему</option>
             <?php
+
             foreach ($result as $array) {
               echo "<option value=\"{$array['id']}\">{$array['name']}</option>";
             }
@@ -172,6 +175,12 @@ if ($isAdmin == 1) { ?>
 
   </html>
 <?php } else
-  header("Location: tasks.php?task=1");
-exit();
+  $pdo = getPDO();
+
+$query = "SELECT id FROM `tasks`;";
+$statement = $pdo->query($query);
+
+$results = $statement->fetchAll(PDO::FETCH_NUM);
+header("Location: tasks.php?task=" . $results[0][0]);
+// exit();
 ?>
