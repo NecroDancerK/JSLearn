@@ -91,7 +91,7 @@ function checkAnswer() {
     let xhr = new XMLHttpRequest();
 
     // Настройка запроса
-    xhr.open('POST', 'tasksProgress.php', true); // Замените 'обработчик.php' на URL вашего PHP-скрипта
+    xhr.open('POST', 'tasksProgress.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Установка заголовка Content-Type
 
     // Обработка ответа от сервера
@@ -103,7 +103,11 @@ function checkAnswer() {
     };
 
     // Отправка данных на сервер
-    xhr.send(`taskId=${currentURL.match(/\d+/)[0]}`); // Замените 'param1=value1&param2=value2' на данные, которые вы хотите отправить
+    xhr.send(`taskId=${currentURL.match(/\d+/)[0]}`);
+
+    const currentTask = sidebar.querySelector(`a[href="${currentURL}"]`)
+
+    currentTask.innerHTML = "<i class=\"fa-solid fa-check absolute left-1 bottom-3\"></i>" + currentTask.innerHTML;
 
   } else {
     // Если ответ неправильный, то мы переключаем (кто мы блять? Я один здесь нахуй) классы панели с заданием и панели неправильного ответа 

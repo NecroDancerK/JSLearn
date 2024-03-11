@@ -11,6 +11,7 @@ function escape_tags($string)
 
 $pdo = getPDO();
 
+$userId = currentUser()["id"];
 $pageId = isset($_GET['task']) ? $_GET['task'] : null;
 
 if ($pageId !== null && is_numeric($pageId)) {
@@ -37,10 +38,6 @@ if ($pageId !== null && is_numeric($pageId)) {
 
 
     $task = preg_replace($RegExp, "<input type=\"text\" class=\"inputTask dark:bg-gray-800\">", $task);
-    
-    /* for ($i = 0; $i < count($RegExpResTask[0]); $i++) {
-      $task = str_replace($RegExpResTask[0][$i], "<input type=\"text\" class=\"inputTask dark:bg-gray-800\">", $task);
-    } */
 
     for ($i = 0; $i < count($RegExpResTitle[0]); $i++) {
       $title = str_replace($RegExpResTitle[0][$i], "<span class=\"font-bold\">" . $RegExpResTitle[1][$i] . "</span>", $title);
@@ -49,15 +46,33 @@ if ($pageId !== null && is_numeric($pageId)) {
     $answersStr = implode(" ", $RegExpResTask[1]);
 
     echo "<span class=\"hidden\" id=\"answersStr\">$answersStr</span>";
-
   }
 }
-// $query = "SELECT title, task FROM tasks WHERE id = $pageId";
-// $statement1 = $pdo->query($query);
 
-// $results1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
+$stmt->bindParam(':user_id', $userId);
 
-// $title = $results1[0]["title"];
-// $task = $results1[0]["task"];
+$stmt->execute();
+$row = $stmt->fetch();
 
+if (!$row) {
+  $data = [];
+  $json_data = json_encode($data);
 
+  $sql = "INSERT INTO progress (user_id, done_tasks) VALUES (:user_id, :done_tasks);";
+
+  // Подготавливаем выражение
+  $statement = $pdo->prepare($sql);
+
+  // Передаем значения переменных и выполняем запрос
+  try {
+    $statement->execute(
+      array(
+        ':user_id' => $userId,
+        ':done_tasks' => $json_data,
+      )
+    );
+  } catch (PDOException $e) {
+    die("Ошибка при добавлении данных: " . $e->getMessage());
+  }
+}

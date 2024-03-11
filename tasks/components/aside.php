@@ -4,23 +4,14 @@ require_once "../php/helpers.php";
 
 $pdo = getPDO();
 
-// $URLArray = explode('/', $_SERVER['REQUEST_URI']);
-
-// $currentURL = end($URLArray);
-
-// preg_match('/\d+/', $currentURL, $matches);
-
-// $pageId = intval($matches[0]);
-
 $pageId = $_GET['task'];
 
-
-$query1 = "SELECT tasks.id, tasks.task_number, tasks.task_theme_id, tasks_themes.name FROM `tasks` JOIN tasks_themes ON tasks.task_theme_id = tasks_themes.id ORDER BY `tasks`.`task_theme_id` ASC;";
+$query1 = "SELECT tasks.id, tasks.task_number, tasks.task_theme_id, tasks_themes.name FROM `tasks` JOIN tasks_themes ON tasks.task_theme_id = tasks_themes.id ORDER BY `tasks`.`task_theme_id`, `tasks`.`task_number` ASC;";
 $statement1 = $pdo->query($query1);
 
 $results1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
 
-$query2 = "SELECT id FROM `tasks`;";
+$query2 = "SELECT id FROM `tasks` ORDER BY `tasks`.`task_theme_id`, `tasks`.`task_number` ASC;";
 $statement2 = $pdo->query($query2);
 
 $results2 = $statement2->fetchAll(PDO::FETCH_NUM);
@@ -30,6 +21,16 @@ $arrayId = [];
 
 $isAdmin = currentUser()["is_admin"];
 
+$userId = currentUser()["id"];
+
+$stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
+$stmt->bindParam(':user_id', $userId);
+
+$stmt->execute();
+$row = $stmt->fetch();
+
+$data = json_decode($row['done_tasks'], true);
+
 
 foreach ($results2 as $value) {
   foreach ($value as $key) {
@@ -37,10 +38,7 @@ foreach ($results2 as $value) {
   }
 }
 
-
-
 $index = array_search($pageId, $arrayId);
-
 
 ?>
 
@@ -51,6 +49,7 @@ $index = array_search($pageId, $arrayId);
       <?php
       $prev = null;
 
+      // var_dump($userId);
 
       echo "<span class=\"hidden\" id=\"arrayId\">" . array_key_exists($index + 1, $arrayId) . "</span>";
 
@@ -58,7 +57,15 @@ $index = array_search($pageId, $arrayId);
         if ($value["name"] !== $prev) {
           echo "<h3 class=\"text-xl font-bold mb-2 pl-2 mt-4\">{$value["name"]}</h3>";
         }
-        echo "<a class=\"group flex pl-2 py-2 relative  font-semibold hover:bg-neutral-500 hover:text-white\" href=\"tasks.php?task={$value["id"]}\">Упражнение {$value['task_number']}" ?>
+        
+
+        echo "<a class=\"group aside-link flex pl-6 py-2 relative gap-1 font-semibold hover:bg-neutral-500 hover:text-white\" href=\"tasks.php?task={$value["id"]}\">";
+        foreach ($data as $key => $doneTask) {
+          if ($value["id"] == $key) {
+            echo "<i class=\"fa-solid fa-check absolute left-1 bottom-3\"></i>";
+          }
+        }
+        echo "Упражнение {$value['task_number']}"; ?>
         <?php if ($isAdmin == 1) { ?>
           <form action="tasksEdit.php" method="get">
             <input class="hidden" type="text" name="task" value="<?php echo $value["id"] ?>">
