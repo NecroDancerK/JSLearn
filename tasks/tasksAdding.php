@@ -100,7 +100,7 @@ if ($isAdmin == 1) { ?>
   ?>
 
   <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
-    <div class="wrapper h-screen dark:bg-gray-900">
+    <div class="wrapper 2xl:h-screen xl:h-auto dark:bg-gray-900">
       <?php
       require_once "components/header.php";
       ?>
@@ -116,7 +116,8 @@ if ($isAdmin == 1) { ?>
       <?php require_once "components/aside.php"; ?>
       <main class="pt-28 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
         <h2 class="text-5xl mb-5">Добавление упражнений:</h2>
-        <form class="flex flex-col gap-2 bg-gray-200 dark:bg-gray-700 p-7 text-xl rounded" action="tasksAdding.php" method="post">
+        <form class="flex flex-col gap-2 bg-gray-200 dark:bg-gray-700 p-7 text-xl rounded" action="tasksAdding.php"
+          method="post">
           <label>
             Номер задания (Пойдет в название упражнения):
             <input class="border border-red-600 dark:bg-gray-800 rounded" type="number" name="taskNumber" min="1">
@@ -146,28 +147,28 @@ if ($isAdmin == 1) { ?>
               переменную с именем <span class="font-bold ">carName</span>, присвойте ей значение <span
                 class="font-bold ">Volvo</span>.):
             </div>
-            <textarea class="border border-red-600 dark:bg-gray-800 mt-4 resize-none h-28 rounded" name="title"></textarea>
+            <textarea class="border border-red-600 dark:bg-gray-800 mt-4 resize-none h-28 rounded"
+              name="title"></textarea>
           </label>
           <label class="mb-7 flex flex-col">
             Задание (Оберните в восклицательные знаки слова, которые вы хотите сделать пропусками. Пример: let !carName! =
             <div>
               "!Volvo!". Получится: let <input type="text" class="inputTask border border-black dark:bg-gray-800"
                 style="width: 70px; height: 21px;" maxlength="7" disabled>
-              = "<input type="text" class="inputTask border border-black dark:bg-gray-800" style="width: 50px; height: 21px;" maxlength="5"
-                disabled>".):
+              = "<input type="text" class="inputTask border border-black dark:bg-gray-800"
+                style="width: 50px; height: 21px;" maxlength="5" disabled>".):
             </div>
             <textarea class="border border-red-600 dark:bg-gray-800 mt-4 resize-none h-28 rounded" name="task"></textarea>
           </label>
 
           <button class="bg-red-600 text-white p-3 text-xl rounded-full" type="submit">Добавить упражнение</button>
         </form>
-
         <script src="../js/taskAdding.js"></script>
       </main>
       <!-- <footer></footer> -->
 
     </div>
-      <?php include_once "components/scripts.php" ?>
+    <?php include_once "components/scripts.php" ?>
 
   </body>
 

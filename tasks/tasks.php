@@ -37,7 +37,7 @@ include_once "components/taskScript.php";
         class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
     </div>
     <?php require_once "components/aside.php"; ?>
-    <main class="pt-64 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
+    <main class="2xl:pt-64 xl:pt-44 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
 
       <?php if (empty($title) && empty($task)) { ?>
         <h2 class="text-5xl mb-5">Здесь ещё нет заданий</h2>
@@ -49,7 +49,7 @@ include_once "components/taskScript.php";
 
         <div class="exercise bg-gray-200 dark:bg-gray-700 w-full h-64 rounded relative mb-7 pt-3">
           <pre class="pl-4">
-          <p class="text-lg"><?php echo $task ?></p>
+          <p class="text-lg"><?php echo $task?></p>
         </pre>
 
           <button

@@ -46,7 +46,7 @@ if ($isAdmin == 1) { ?>
 
   <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
 
-    <div class="wrapper h-screen dark:bg-gray-900">
+    <div class="wrapper 2xl:h-screen xl:h-auto dark:bg-gray-900">
       <?php
 
       require_once "components/header.php";
@@ -72,7 +72,7 @@ if ($isAdmin == 1) { ?>
           class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
       </div>
       <?php require_once "components/aside.php"; ?>
-      <main class="pt-64 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
+      <main class="2xl:pt-64 xl:pt-44 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
 
         <h2 class="text-5xl mb-5">Удаление упражнения:</h2>
         <p class="mb-5 text-lg">
@@ -85,9 +85,9 @@ if ($isAdmin == 1) { ?>
               </pre>
         </div>
         <form class="flex justify-between items-center" action="taskDelete.php" method="post">
-          <p class="text-2xl"><span class="font-bold">Вы</span> уверены, что хотите удалить это упражнение?</p>
+          <p class="2xl:text-2xl xl:text-xl"><span class="font-bold">Вы</span> уверены, что хотите удалить это упражнение?</p>
           <input type="text" name="taskId" class="hidden" value="<?php echo $pageId ?>">
-          <button class="bg-red-600 p-3 px-5 rounded-full text-white font-bold" type="submit">Удалить упражнение</button>
+          <button class="bg-red-600 p-3 px-5 rounded-full text-white font-bold " type="submit">Удалить упражнение</button>
         </form>
 
 

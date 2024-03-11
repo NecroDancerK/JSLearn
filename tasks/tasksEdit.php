@@ -121,13 +121,9 @@ if ($isAdmin == 1) { ?>
 
   <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
 
-    <div class="wrapper h-screen dark:bg-gray-900">
+    <div class="wrapper 2xl:h-screen xl:h-auto dark:bg-gray-900">
       <?php
-
       require_once "components/header.php";
-
-
-
       ?>
       <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
         <a href="../learn/learn1.php"
