@@ -634,6 +634,34 @@ video {
   top: 9px;
 }
 
+.left-1 {
+  left: 0.25rem;
+}
+
+.top-1 {
+  top: 0.25rem;
+}
+
+.top-5 {
+  top: 1.25rem;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
+.top-3 {
+  top: 0.75rem;
+}
+
+.top-2 {
+  top: 0.5rem;
+}
+
+.bottom-3 {
+  bottom: 0.75rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -754,14 +782,6 @@ video {
   height: 100%;
 }
 
-.h-\[\] {
-  height: ;
-}
-
-.h-\[21px\] {
-  height: 21px;
-}
-
 .h-screen {
   height: 100vh;
 }
@@ -796,18 +816,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[\] {
-  width: ;
-}
-
-.w-\[\$width\] {
-  width: $width;
-}
-
-.w-\[\$widthpx\] {
-  width: $widthpx;
 }
 
 .basis-1\/2 {
@@ -846,16 +854,16 @@ video {
   gap: 2.5rem;
 }
 
-.gap-4 {
-  gap: 1rem;
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-5 {
   gap: 1.25rem;
 }
 
-.gap-2 {
-  gap: 0.5rem;
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .overflow-auto {
@@ -957,16 +965,6 @@ video {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-}
-
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
-.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'\/img\/free-icon-search-4024513\.webp\'\)\] {
@@ -1105,24 +1103,16 @@ video {
   padding-top: 10rem;
 }
 
-.pt-64 {
-  padding-top: 16rem;
-}
-
 .pt-\[110px\] {
   padding-top: 110px;
 }
 
-.pt-14 {
-  padding-top: 3.5rem;
+.pt-44 {
+  padding-top: 11rem;
 }
 
-.pt-1 {
-  padding-top: 0.25rem;
-}
-
-.pt-16 {
-  padding-top: 4rem;
+.pl-5 {
+  padding-left: 1.25rem;
 }
 
 .text-center {
@@ -1240,6 +1230,16 @@ video {
   transition-duration: 150ms;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .hover\:bg-black:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
@@ -1274,6 +1274,11 @@ video {
   border-color: rgb(3 7 18 / var(--tw-border-opacity));
 }
 
+:is(.dark .dark\:bg-gray-700) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
 :is(.dark .dark\:bg-gray-800) {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -1289,49 +1294,19 @@ video {
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-slate-700) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
-}
-
-:is(.dark .dark\:bg-gray-700) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-:is(.dark .dark\:bg-gray-500) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-}
-
-:is(.dark .dark\:bg-gray-600) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
-}
-
-:is(.dark .dark\:bg-black) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
 :is(.dark .dark\:text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-:is(.dark .dark\:text-black) {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+:is(.dark .dark\:hover\:bg-black:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:hover\:bg-gray-700:hover) {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-:is(.dark .dark\:hover\:bg-black:hover) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {
@@ -1340,8 +1315,44 @@ video {
   }
 }
 
+@media (min-width: 1280px) {
+  .xl\:h-auto {
+    height: auto;
+  }
+
+  .xl\:h-screen {
+    height: 100vh;
+  }
+
+  .xl\:pt-44 {
+    padding-top: 11rem;
+  }
+
+  .xl\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
 @media (min-width: 1536px) {
+  .\32xl\:h-\[9999999px\] {
+    height: 9999999px;
+  }
+
+  .\32xl\:h-screen {
+    height: 100vh;
+  }
+
   .\32xl\:w-\[330px\] {
     width: 330px;
+  }
+
+  .\32xl\:pt-64 {
+    padding-top: 16rem;
+  }
+
+  .\32xl\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }

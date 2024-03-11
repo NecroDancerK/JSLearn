@@ -76,6 +76,9 @@ if ($isAdmin == 1) { ?>
         } catch (PDOException $e) {
           die("Ошибка при изменении задания: " . $e->getMessage());
         }
+
+        checkJSONOnEdit($taskId);
+
         header("Location: tasksEdit.php?task=$taskId");
       } else {
         $sql = "UPDATE tasks SET task_number = :task_number, task_theme_id = :task_theme_id, title = :title, task = :task WHERE id = :taskId;";
@@ -97,6 +100,9 @@ if ($isAdmin == 1) { ?>
         } catch (PDOException $e) {
           die("Ошибка при изменении задания: " . $e->getMessage());
         }
+
+        checkJSONOnEdit($taskId);
+
         header("Location: tasksEdit.php?task=$taskId");
       }
     }
@@ -121,13 +127,9 @@ if ($isAdmin == 1) { ?>
 
   <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
 
-    <div class="wrapper h-screen dark:bg-gray-900">
+    <div class="wrapper 2xl:h-screen xl:h-auto dark:bg-gray-900">
       <?php
-
       require_once "components/header.php";
-
-
-
       ?>
       <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
         <a href="../learn/learn1.php"
@@ -141,7 +143,8 @@ if ($isAdmin == 1) { ?>
       <?php require_once "components/aside.php"; ?>
       <main class="pt-40 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
         <h2 class="text-5xl mb-5">Изменение упражнения:</h2>
-        <form class="flex flex-col gap-2 bg-gray-200 dark:bg-gray-700 p-7 text-xl rounded" action="tasksEdit.php" method="post">
+        <form class="flex flex-col gap-2 bg-gray-200 dark:bg-gray-700 p-7 text-xl rounded" action="tasksEdit.php"
+          method="post">
           <label>
             Номер задания (Пойдет в название упражнения):
             <input class="border border-red-600 dark:bg-gray-800 rounded" type="number" name="taskNumber" min="1"
@@ -184,8 +187,8 @@ if ($isAdmin == 1) { ?>
             <div>
               "!Volvo!". Получится: let <input type="text" class="inputTask border border-black dark:bg-gray-800"
                 style="width: 70px; height: 21px;" maxlength="7" disabled>
-              = "<input type="text" class="inputTask border border-black dark:bg-gray-800" style="width: 50px; height: 21px;" maxlength="5"
-                disabled>".):
+              = "<input type="text" class="inputTask border border-black dark:bg-gray-800"
+                style="width: 50px; height: 21px;" maxlength="5" disabled>".):
             </div>
             <input class="hidden" type="text" name="taskId" value="<?php echo $pageId ?>">
             <textarea class="border border-red-600 dark:bg-gray-800 mt-4 resize-none h-28 rounded"
@@ -199,7 +202,7 @@ if ($isAdmin == 1) { ?>
       </main>
       <!-- <footer></footer> -->
     </div>
-      <?php include_once "components/scripts.php" ?>
+    <?php include_once "components/scripts.php" ?>
 
   </body>
 

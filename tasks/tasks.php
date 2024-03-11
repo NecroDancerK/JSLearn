@@ -37,7 +37,7 @@ include_once "components/taskScript.php";
         class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
     </div>
     <?php require_once "components/aside.php"; ?>
-    <main class="pt-64 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
+    <main class="2xl:pt-64 pt-44 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
 
       <?php if (empty($title) && empty($task)) { ?>
         <h2 class="text-5xl mb-5">Здесь ещё нет заданий</h2>
@@ -46,11 +46,11 @@ include_once "components/taskScript.php";
         <p class="mb-5 text-lg">
           <?php echo $title ?>
         </p>
-
+        <?php checkJSONOnDelete() ?>
         <div class="exercise bg-gray-200 dark:bg-gray-700 w-full h-64 rounded relative mb-7 pt-3">
           <pre class="pl-4">
-          <p class="text-lg"><?php echo $task ?></p>
-        </pre>
+            <p class="text-lg"><?php echo $task ?></p>
+          </pre>
 
           <button
             class="bg-neutral-800 hover:bg-black p-3 px-5 rounded-full text-white font-bold absolute right-5 bottom-5"
@@ -68,12 +68,12 @@ include_once "components/taskScript.php";
           </a>
         <?php } else { ?>
           <a id="resultEnd" class="hidden bg-green-200 w-full h-48 rounded relative mb-7 p-12 nextButton"
-            href="../learn/learn1.php">
+            href="tasks.php?task=<?= $results[0][0]; ?>">
             <h2 class="text-3xl text-green-800 mb-3">Вы прошли все задания! Молодец!</h2>
             <p class="text-green-800">Нажмите <span class="underline">здесь</span>, чтобы выйти</p>
           </a>
-          <a class="bg-red-600 p-3 px-5 rounded-full text-white font-bold hidden  nextButton" href="../learn/learn1.php"
-            id="nextButton">На главную</a>
+          <a class="bg-red-600 p-3 px-5 rounded-full text-white font-bold hidden  nextButton"
+            href="tasks.php?task=<?= $results[0][0]; ?>" id="nextButton">На главную</a>
         <?php } ?>
         <button class="bg-red-600 p-3 px-5 rounded-full text-white font-bold" onclick="checkAnswer()"
           id="checkButton">Подтвердить

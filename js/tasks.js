@@ -61,7 +61,6 @@ function checkAnswer() {
   const resultPanelCorrect = document.getElementById("resultCorrect");
   const resultPanelEnd = document.getElementById("resultEnd");
   const arrayIdStr = document.getElementById("arrayId").innerText;
-  console.log((arrayIdStr));
   const exercisePanel = document.querySelector(".exercise");
   const checkButton = document.getElementById("checkButton");
   const nextButton = document.getElementById("nextButton");
@@ -87,6 +86,29 @@ function checkAnswer() {
     }
     checkButton.classList.add("hidden");
     nextButton.classList.remove("hidden");
+
+    // Создаем новый объект XMLHttpRequest
+    let xhr = new XMLHttpRequest();
+
+    // Настройка запроса
+    xhr.open('POST', 'tasksProgress.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Установка заголовка Content-Type
+
+    // Обработка ответа от сервера
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // Обработка успешного ответа от сервера
+        console.log(xhr.responseText);
+      }
+    };
+
+    // Отправка данных на сервер
+    xhr.send(`taskId=${currentURL.match(/\d+/)[0]}`);
+
+    const currentTask = sidebar.querySelector(`a[href="${currentURL}"]`)
+
+    currentTask.innerHTML = "<i class=\"fa-solid fa-check absolute left-1 bottom-3\"></i>" + currentTask.innerHTML;
+
   } else {
     // Если ответ неправильный, то мы переключаем (кто мы блять? Я один здесь нахуй) классы панели с заданием и панели неправильного ответа 
     exercisePanel.classList.toggle("hidden");
