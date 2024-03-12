@@ -18,7 +18,7 @@ include_once "components/taskScript.php";
 
     $pdo = getPDO();
 
-    $query = "SELECT id FROM `tasks`;";
+    $query = "SELECT id FROM `tasks` ORDER BY `tasks`.`task_theme_id`, `tasks`.`task_number` ASC;;";
     $statement = $pdo->query($query);
 
     $results = $statement->fetchAll(PDO::FETCH_NUM);
@@ -42,11 +42,10 @@ include_once "components/taskScript.php";
       <?php if (empty($title) && empty($task)) { ?>
         <h2 class="text-5xl mb-5">Здесь ещё нет заданий</h2>
       <?php } else { ?>
-        <h2 class="text-5xl mb-5">Упражнение:</h2>
+        <h2 class="text-5xl mb-5">Упражнение: </h2>
         <p class="mb-5 text-lg">
           <?php echo $title ?>
         </p>
-        <?php checkJSONOnDelete() ?>
         <div class="exercise bg-gray-200 dark:bg-gray-700 w-full h-64 rounded relative mb-7 pt-3">
           <pre class="pl-4">
             <p class="text-lg"><?php echo $task ?></p>

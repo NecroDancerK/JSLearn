@@ -133,7 +133,7 @@ function checkGuest()
   }
 }
 
-function checkJSONOnDelete()
+/* function checkJSONOnDelete()
 {
   $pdo = getPDO();
 
@@ -183,29 +183,30 @@ function checkJSONOnDelete()
   $stmt->bindParam(':done_tasks', $checkedJSON);
   $stmt->bindParam(':user_id', $userId);
   $stmt->execute();
-}
+} */
 
-function checkJSONOnEdit($taskId)
+function checkJSON($taskId)
 {
   $pdo = getPDO();
 
-  $userId = currentUser()["id"];
-
-  $stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
-  $stmt->bindParam(':user_id', $userId);
-
+  $stmt = $pdo->prepare("SELECT user_id, done_tasks FROM progress");
   $stmt->execute();
-  $row = $stmt->fetch();
+  $row = $stmt->fetchAll();
 
-  $data = json_decode($row['done_tasks'], true);
+  foreach ($row as $value) {
 
-  unset($data[$taskId]);
+    $data = json_decode($value['done_tasks'], true);
 
-  $checkedJSON = json_encode($data);
+    $userId = $value['user_id'];
 
-  $update_JSON = "UPDATE progress SET done_tasks = :done_tasks WHERE user_id = :user_id";
-  $stmt = $pdo->prepare($update_JSON);
-  $stmt->bindParam(':done_tasks', $checkedJSON);
-  $stmt->bindParam(':user_id', $userId);
-  $stmt->execute();
+    unset($data[$taskId]);
+
+    $checkedJSON = json_encode($data);
+
+    $update_JSON = "UPDATE progress SET done_tasks = :done_tasks WHERE user_id = :user_id";
+    $stmt = $pdo->prepare($update_JSON);
+    $stmt->bindParam(':done_tasks', $checkedJSON);
+    $stmt->bindParam(':user_id', $userId);
+    $stmt->execute();
+  }
 }

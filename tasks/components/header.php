@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center p-4 py-3 gap-5 fixed w-full z-10 bg-white dark:bg-gray-900">
+  <header class="flex justify-between items-center p-4 py-3 gap-5 fixed w-full z-10 bg-white dark:bg-gray-900">
   <div class="flex gap-10 items-center ">
     <div class="logo">
       <a href="../index.php">
@@ -27,5 +27,6 @@
     <a href="../profile.php">
       <img src="../img/avatar(1).webp" alt="">
     </a>
+    
   </div>
 </header>

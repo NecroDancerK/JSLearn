@@ -77,9 +77,9 @@ if ($isAdmin == 1) { ?>
           die("Ошибка при изменении задания: " . $e->getMessage());
         }
 
-        checkJSONOnEdit($taskId);
+        checkJSON($taskId);
 
-        header("Location: tasksEdit.php?task=$taskId");
+        // header("Location: tasksEdit.php?task=$taskId");
       } else {
         $sql = "UPDATE tasks SET task_number = :task_number, task_theme_id = :task_theme_id, title = :title, task = :task WHERE id = :taskId;";
 
@@ -101,9 +101,9 @@ if ($isAdmin == 1) { ?>
           die("Ошибка при изменении задания: " . $e->getMessage());
         }
 
-        checkJSONOnEdit($taskId);
+        checkJSON($taskId);
 
-        header("Location: tasksEdit.php?task=$taskId");
+        // header("Location: tasksEdit.php?task=$taskId");
       }
     }
   }

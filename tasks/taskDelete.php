@@ -34,7 +34,7 @@ if ($isAdmin == 1) { ?>
 
       // var_dump($row["done_tasks"]);
 
-      checkJSONOnDelete();
+      checkJSON($taskId);
       // Перенаправление на страницу со списком упражнений
       header("Location: tasks.php?task=" . $results[0][0]);
       exit();
