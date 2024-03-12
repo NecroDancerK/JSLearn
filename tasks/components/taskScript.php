@@ -36,7 +36,6 @@ if ($pageId !== null && is_numeric($pageId)) {
     $title = escape_tags($title);
     $task = escape_tags($task);
 
-
     $task = preg_replace($RegExp, "<input type=\"text\" class=\"inputTask dark:bg-gray-800\">", $task);
 
     for ($i = 0; $i < count($RegExpResTitle[0]); $i++) {

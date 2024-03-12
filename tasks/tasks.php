@@ -30,7 +30,7 @@ include_once "components/taskScript.php";
       if (!empty($results)) {
         echo $results[0][0];
       }
-      ?>" class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
+      ?>" class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold" >Упражнения</a>
       <a href="../tests.php"
         class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
       <a href="../playground.php"

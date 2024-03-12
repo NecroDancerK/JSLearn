@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $userId);
-
+    
     $stmt->execute();
     $row = $stmt->fetch();
 

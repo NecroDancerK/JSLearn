@@ -590,12 +590,24 @@ video {
   position: relative;
 }
 
+.bottom-3 {
+  bottom: 0.75rem;
+}
+
 .bottom-5 {
   bottom: 1.25rem;
 }
 
 .left-0 {
   left: 0px;
+}
+
+.left-1 {
+  left: 0.25rem;
+}
+
+.right-0 {
+  right: 0px;
 }
 
 .right-10 {
@@ -634,32 +646,24 @@ video {
   top: 9px;
 }
 
-.left-1 {
-  left: 0.25rem;
+.right-3 {
+  right: 0.75rem;
+}
+
+.right-\[\] {
+  right: ;
+}
+
+.right-\[6px\] {
+  right: 6px;
 }
 
 .top-1 {
   top: 0.25rem;
 }
 
-.top-5 {
-  top: 1.25rem;
-}
-
-.top-4 {
-  top: 1rem;
-}
-
-.top-3 {
-  top: 0.75rem;
-}
-
 .top-2 {
   top: 0.5rem;
-}
-
-.bottom-3 {
-  bottom: 0.75rem;
 }
 
 .z-10 {
@@ -850,6 +854,10 @@ video {
   justify-content: space-between;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .gap-10 {
   gap: 2.5rem;
 }
@@ -860,10 +868,6 @@ video {
 
 .gap-5 {
   gap: 1.25rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
 }
 
 .overflow-auto {
@@ -965,10 +969,6 @@ video {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-}
-
-.bg-\[url\(\'\/img\/free-icon-search-4024513\.webp\'\)\] {
-  background-image: url('/img/free-icon-search-4024513.webp');
 }
 
 .bg-\[url\(\'img\\free-icon-search-4024513\.webp\'\)\] {
@@ -1103,16 +1103,12 @@ video {
   padding-top: 10rem;
 }
 
-.pt-\[110px\] {
-  padding-top: 110px;
-}
-
 .pt-44 {
   padding-top: 11rem;
 }
 
-.pl-5 {
-  padding-left: 1.25rem;
+.pt-\[110px\] {
+  padding-top: 110px;
 }
 
 .text-center {
@@ -1320,14 +1316,6 @@ input[type=number] {
     height: auto;
   }
 
-  .xl\:h-screen {
-    height: 100vh;
-  }
-
-  .xl\:pt-44 {
-    padding-top: 11rem;
-  }
-
   .xl\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -1335,10 +1323,6 @@ input[type=number] {
 }
 
 @media (min-width: 1536px) {
-  .\32xl\:h-\[9999999px\] {
-    height: 9999999px;
-  }
-
   .\32xl\:h-screen {
     height: 100vh;
   }

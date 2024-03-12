@@ -49,10 +49,6 @@ for (let index = 0; index < inputsArray.length; index++) {
 }
 
 
-// Костыль для выполнения функции при загрузке
-document.getElementById("click").click();
-
-
 // Функция для проверки ответа, я перелопатил ее раз десять,
 // Короче теперь функция сохраняет результат ввода пользователя и правильность его в виде true/false
 function checkAnswer() {
@@ -108,6 +104,12 @@ function checkAnswer() {
     const currentTask = sidebar.querySelector(`a[href="${currentURL}"]`)
 
     currentTask.innerHTML = "<i class=\"fa-solid fa-check absolute left-1 bottom-3\"></i>" + currentTask.innerHTML;
+
+    const checkItems = document.querySelectorAll('.fa-check');
+
+    // console.log(Math.ceil((checkItems.length / sidebarItems.length) * 100));
+
+    setProgressFromFront(Math.ceil((checkItems.length / sidebarItems.length) * 100));
 
   } else {
     // Если ответ неправильный, то мы переключаем (кто мы блять? Я один здесь нахуй) классы панели с заданием и панели неправильного ответа 

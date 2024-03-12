@@ -22,32 +22,9 @@ $arrayJSON = array_keys($data);
 $arrayTasks = [];
 
 $stmt = $pdo->prepare("SELECT COUNT(*) as tasksCount FROM tasks");
-// $stmt = $pdo->prepare("SELECT id FROM `tasks` ORDER BY id ASC");
 $stmt->execute();
 $tasksCount = $stmt->fetch(PDO::FETCH_ASSOC);
-// $tasksCount = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// var_dump($tasksCount);
-
-// foreach ($tasksCount as $value) {
-//   foreach ($value as $key) {
-//     array_push($arrayTasks, $key);
-//   }
-// }
-
-// $intersect = array_intersect($arrayTasks, $arrayJSON);
-
-// $diff = array_diff($arrayJSON, $intersect);
-
-// foreach ($diff as $value) {
-//     $key = array_search($value, $arrayJSON); // Находим ключ значения
-//     unset($arrayJSON[$key]); // Удаляем значение по ключу
-// }
-
-// print_r($arrayJSON);
-
-
-// var_dump($intersect);
 ?>
 
 <!DOCTYPE html>
