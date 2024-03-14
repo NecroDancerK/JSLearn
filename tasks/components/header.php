@@ -6,8 +6,8 @@
       </a>
     </div>
     <form class="relative" action="" method="get">
-      <input class="search rounded-3xl border py-2 pr-10 pl-4 outline-red-600 dark:bg-gray-800 dark:border-gray-950" type="search" name="search"
-        placeholder="Search" id="">
+      <input class="search rounded-3xl border py-2 pr-10 pl-4 outline-red-600 dark:bg-gray-800 dark:border-gray-950"
+        type="search" name="search" placeholder="Search" id="">
       <div class="rounded-full w-10 h-10 absolute right-[1px] top-[1px] hover:bg-gray-200 dark:hover:bg-gray-700">
         <button
           class="bg-[url('img\free-icon-search-4024513.webp')] bg-center bg-no-repeat bg-cover w-6 h-6 absolute right-[7px] top-[9px] rounded-full"
@@ -16,16 +16,24 @@
         </button>
       </div>
     </form>
-    <button class="rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700"  onclick="switchTheme()">
+    <button class="rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700"
+      onclick="switchTheme()">
       <img id="themeBtn" class="w-6 h-6" src="../img/free-icon-dark-mode-12657259.webp" alt="">
     </button>
   </div>
   <h2 class="text-red-600 font-bold text-2xl dark:text-white">
     Лучший сайт обучения JavaScript
   </h2>
+
+
   <div class="profile rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700">
-    <a href="../profile.php">
+    <a class="relative z-10" href="../profile.php">
       <img src="../img/avatar(1).webp" alt="">
     </a>
+
+    <svg class="progress-circle absolute right-[6px] top-1" width="60" height="60">
+      <circle class="progress" cx="30" cy="30" r="20" stroke-width="4" fill="transparent" />
+    </svg>
+
   </div>
 </header>

@@ -213,7 +213,6 @@
           <svg class="progress-circle absolute -bottom-[11px] -right-[10px]" width="60" height="60">
             <circle class="progress" cx="30" cy="30" r="20" stroke-width="4" fill="transparent" />
           </svg>
-
         </div>
         <a class="bg-red-600 p-3 rounded" href="learn2.php" id="btn-next">Вперед</a>
       </div>

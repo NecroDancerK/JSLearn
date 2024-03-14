@@ -15,18 +15,18 @@ if ($isAdmin == 1) { ?>
     if (isset($_POST['taskId'])) {
 
       $userId = currentUser()["id"];
-      $taskId = $_POST['taskId'];
+      $learnId = $_POST['taskId'];
 
       // Удаление упражнения из базы данных
       $stmt = $pdo->prepare('DELETE FROM tasks WHERE id = ?');
-      $stmt->execute([$taskId]);
+      $stmt->execute([$learnId]);
 
       $query = "SELECT id FROM `tasks`;";
       $statement = $pdo->query($query);
 
       $results = $statement->fetchAll(PDO::FETCH_NUM);
 
-      $stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
+      $stmt = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
       $stmt->bindParam(':user_id', $userId);
 
       $stmt->execute();
@@ -34,7 +34,7 @@ if ($isAdmin == 1) { ?>
 
       // var_dump($row["done_tasks"]);
 
-      checkJSONOnDelete();
+      checkJSON($learnId);
       // Перенаправление на страницу со списком упражнений
       header("Location: tasks.php?task=" . $results[0][0]);
       exit();

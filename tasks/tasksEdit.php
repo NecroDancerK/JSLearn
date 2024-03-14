@@ -31,7 +31,7 @@ if ($isAdmin == 1) { ?>
     $task = $_POST["task"];
     $taskTheme = $_POST["taskTheme"];
     $newTheme = $_POST["newTheme"];
-    $taskId = $_POST["taskId"];
+    $learnId = $_POST["taskId"];
 
     if (!empty($title) && !empty($task) && !empty($taskNumber) && !empty($taskTheme)) {
       $pdo = getPDO();
@@ -70,16 +70,16 @@ if ($isAdmin == 1) { ?>
               ':task_theme_id' => $taskTheme,
               ':title' => $title,
               ':task' => $task,
-              ':taskId' => $taskId,
+              ':taskId' => $learnId,
             )
           );
         } catch (PDOException $e) {
           die("Ошибка при изменении задания: " . $e->getMessage());
         }
 
-        checkJSONOnEdit($taskId);
+        checkJSON($learnId);
 
-        header("Location: tasksEdit.php?task=$taskId");
+        header("Location: tasksEdit.php?task=$learnId");
       } else {
         $sql = "UPDATE tasks SET task_number = :task_number, task_theme_id = :task_theme_id, title = :title, task = :task WHERE id = :taskId;";
 
@@ -94,16 +94,16 @@ if ($isAdmin == 1) { ?>
               ':task_theme_id' => $taskTheme,
               ':title' => $title,
               ':task' => $task,
-              ':taskId' => $taskId,
+              ':taskId' => $learnId,
             )
           );
         } catch (PDOException $e) {
           die("Ошибка при изменении задания: " . $e->getMessage());
         }
 
-        checkJSONOnEdit($taskId);
+        checkJSON($learnId);
 
-        header("Location: tasksEdit.php?task=$taskId");
+        header("Location: tasksEdit.php?task=$learnId");
       }
     }
   }

@@ -1,0 +1,18 @@
+.progress-circle {
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+
+}
+
+.progress {
+  stroke: red;
+  /* stroke: #4caf50; */
+  stroke-dasharray: 125.6;
+  /* окружность круга */
+  stroke-dashoffset: 125.6;
+}
+
+.animate {
+  transition: stroke-dashoffset 0.5s;
+}

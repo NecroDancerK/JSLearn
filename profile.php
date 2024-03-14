@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once __DIR__ . '/php/helpers.php';
 
 checkAuth();
@@ -9,7 +11,7 @@ $pdo = getPDO();
 
 $userId = $user["id"];
 
-$stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
+$stmt = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
 $stmt->bindParam(':user_id', $userId);
 
 $stmt->execute();
@@ -22,32 +24,13 @@ $arrayJSON = array_keys($data);
 $arrayTasks = [];
 
 $stmt = $pdo->prepare("SELECT COUNT(*) as tasksCount FROM tasks");
-// $stmt = $pdo->prepare("SELECT id FROM `tasks` ORDER BY id ASC");
 $stmt->execute();
 $tasksCount = $stmt->fetch(PDO::FETCH_ASSOC);
-// $tasksCount = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// var_dump($tasksCount);
-
-// foreach ($tasksCount as $value) {
-//   foreach ($value as $key) {
-//     array_push($arrayTasks, $key);
-//   }
-// }
-
-// $intersect = array_intersect($arrayTasks, $arrayJSON);
-
-// $diff = array_diff($arrayJSON, $intersect);
-
-// foreach ($diff as $value) {
-//     $key = array_search($value, $arrayJSON); // Находим ключ значения
-//     unset($arrayJSON[$key]); // Удаляем значение по ключу
-// }
-
-// print_r($arrayJSON);
 
 
-// var_dump($intersect);
+$learnFileCount = $_SESSION['learnFileCount']; // Получение переменной из сессии
+$countLearn = $_SESSION['countLearn'];
+
 ?>
 
 <!DOCTYPE html>
@@ -64,10 +47,19 @@ $tasksCount = $stmt->fetch(PDO::FETCH_ASSOC);
     <h1 style="margin: 0px;">Привет,
       <?php echo $user['name'] ?>!
     </h1>
-    <label for="tasks">Прогресс заданий: Выполнено <?= count($data) ?> из <?= $tasksCount["tasksCount"] ?></label>
+    <label for="tasks">Изучено тем:
+      <?= count($countLearn) ?> из
+      <?= $learnFileCount ?>
+    </label>
 
-        <progress id="tasks" value="<?= count($data) ?>"
-            max="<?= $tasksCount["tasksCount"] ?>"></progress>
+    <progress id="tasks" value="<?= count($countLearn) ?>" max="<?=  $learnFileCount?>"></progress>
+    <label for="tasks">Прогресс заданий: Выполнено
+      <?= count($data) ?> из
+      <?= $tasksCount["tasksCount"] ?>
+    </label>
+
+    <progress id="tasks" value="<?= count($data) ?>" max="<?= $tasksCount["tasksCount"] ?>"></progress>
+
     <form action="php/actions/logout.php" method="post">
       <button class="" role="button">Выйти из аккаунта</button>
     </form>

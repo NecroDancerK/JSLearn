@@ -7,11 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $pdo = getPDO();
 
     $userId = currentUser()["id"];
-    $taskId = $_POST['taskId'];
+    $learnId = $_POST['taskId'];
 
-    $stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
+    $stmt = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $userId);
-
+    
     $stmt->execute();
     $row = $stmt->fetch();
 
@@ -19,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       // Распарсим JSON строку в массив PHP
       $data = json_decode($row['done_tasks'], true);
 
-      $data[$taskId] = "done";
+      $data[$learnId] = "done";
 
       // Преобразуем массив обратно в JSON строку
       $updated_json_data = json_encode($data);
 
       // SQL запрос для обновления JSON данных
-      $update_sql = "UPDATE progress SET done_tasks = :done_tasks WHERE user_id = :user_id";
+      $update_sql = "UPDATE tasks_progress SET done_tasks = :done_tasks WHERE user_id = :user_id";
       $stmt = $pdo->prepare($update_sql);
       $stmt->bindParam(':done_tasks', $updated_json_data);
       $stmt->bindParam(':user_id', $userId);
@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     } else {
       // JSON данные для вставки
       $data = [
-        $taskId => "done",
+        $learnId => "done",
       ];
       $json_data = json_encode($data);
 
-      $sql = "INSERT INTO progress (user_id, done_tasks) VALUES (:user_id, :done_tasks);";
+      $sql = "INSERT INTO tasks_progress (user_id, done_tasks) VALUES (:user_id, :done_tasks);";
 
       // Подготавливаем выражение
       $stmt = $pdo->prepare($sql);
