@@ -18,7 +18,7 @@ include_once "components/taskScript.php";
 
     $pdo = getPDO();
 
-    $query = "SELECT id FROM `tasks` ORDER BY `tasks`.`task_theme_id`, `tasks`.`task_number` ASC;;";
+    $query = "SELECT id FROM `tasks` ORDER BY `tasks`.`task_theme_id`, `tasks`.`task_number` ASC;";
     $statement = $pdo->query($query);
 
     $results = $statement->fetchAll(PDO::FETCH_NUM);

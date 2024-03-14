@@ -606,10 +606,6 @@ video {
   left: 0.25rem;
 }
 
-.right-0 {
-  right: 0px;
-}
-
 .right-10 {
   right: 2.5rem;
 }
@@ -626,12 +622,20 @@ video {
   right: 1px;
 }
 
+.right-\[6px\] {
+  right: 6px;
+}
+
 .right-\[7px\] {
   right: 7px;
 }
 
 .top-0 {
   top: 0px;
+}
+
+.top-1 {
+  top: 0.25rem;
 }
 
 .top-\[1px\] {
@@ -644,26 +648,6 @@ video {
 
 .top-\[9px\] {
   top: 9px;
-}
-
-.right-3 {
-  right: 0.75rem;
-}
-
-.right-\[\] {
-  right: ;
-}
-
-.right-\[6px\] {
-  right: 6px;
-}
-
-.top-1 {
-  top: 0.25rem;
-}
-
-.top-2 {
-  top: 0.5rem;
 }
 
 .z-10 {

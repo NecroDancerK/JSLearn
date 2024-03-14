@@ -133,57 +133,41 @@ function checkGuest()
   }
 }
 
-/* function checkJSONOnDelete()
+function setJSONProgressForUser()
 {
   $pdo = getPDO();
-
   $userId = currentUser()["id"];
 
-  $stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
+  $stmt = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
   $stmt->bindParam(':user_id', $userId);
 
   $stmt->execute();
   $row = $stmt->fetch();
 
-  $data = json_decode($row['done_tasks'], true);
+  if (!$row) {
+    $data = [];
+    $json_data = json_encode($data);
 
-  $arrayJSON = array_keys($data);
+    $sql = "INSERT INTO tasks_progress (user_id, done_tasks) VALUES (:user_id, :done_tasks);";
 
-  $arrayTasks = [];
+    // Подготавливаем выражение
+    $statement = $pdo->prepare($sql);
 
-  $stmt = $pdo->prepare("SELECT id FROM `tasks` ORDER BY id ASC");
-  $stmt->execute();
-  $tasksCount = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-  foreach ($tasksCount as $value) {
-    foreach ($value as $key) {
-      array_push($arrayTasks, $key);
+    // Передаем значения переменных и выполняем запрос
+    try {
+      $statement->execute(
+        array(
+          ':user_id' => $userId,
+          ':done_tasks' => $json_data,
+        )
+      );
+    } catch (PDOException $e) {
+      die("Ошибка при добавлении данных: " . $e->getMessage());
     }
   }
 
-  $intersect = array_intersect($arrayTasks, $arrayJSON);
+}
 
-  $diff = array_diff($arrayJSON, $intersect);
-
-  foreach ($diff as $value) {
-    $key = array_search($value, $arrayJSON); // Находим ключ значения
-    unset($arrayJSON[$key]); // Удаляем значение по ключу
-  }
-
-  $assocArrayJSON = [];
-
-  foreach ($arrayJSON as $value) {
-    $assocArrayJSON[$value] = "done";
-  }
-
-  $checkedJSON = json_encode($assocArrayJSON);
-
-  $update_JSON = "UPDATE progress SET done_tasks = :done_tasks WHERE user_id = :user_id";
-  $stmt = $pdo->prepare($update_JSON);
-  $stmt->bindParam(':done_tasks', $checkedJSON);
-  $stmt->bindParam(':user_id', $userId);
-  $stmt->execute();
-} */
 
 function checkJSON($taskId)
 {
@@ -203,7 +187,7 @@ function checkJSON($taskId)
 
     $checkedJSON = json_encode($data);
 
-    $update_JSON = "UPDATE progress SET done_tasks = :done_tasks WHERE user_id = :user_id";
+    $update_JSON = "UPDATE tasks_progress SET done_tasks = :done_tasks WHERE user_id = :user_id";
     $stmt = $pdo->prepare($update_JSON);
     $stmt->bindParam(':done_tasks', $checkedJSON);
     $stmt->bindParam(':user_id', $userId);

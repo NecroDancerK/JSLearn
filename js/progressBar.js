@@ -27,21 +27,38 @@ function setProgressFromFront(percent) {
 
 
 // Создаем новый объект XMLHttpRequest
-let xhr = new XMLHttpRequest();
+let xhr1 = new XMLHttpRequest();
 
 // Настройка запроса
-xhr.open('POST', 'progressPercent.php', true);
-xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Установка заголовка Content-Type
+xhr1.open('POST', 'progressPercent.php', true);
+xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Установка заголовка Content-Type
 
 // Обработка ответа от сервера
-xhr.onreadystatechange = function () {
-  if (xhr.readyState == 4 && xhr.status == 200) {
+xhr1.onreadystatechange = function () {
+  if (xhr1.readyState == 4 && xhr1.status == 200) {
     // Обработка успешного ответа от сервера
-    setProgressFromBack(xhr.responseText * 100);
+    setProgressFromBack(xhr1.responseText * 100);
   }
 };
 
 // Отправка данных на сервер
-xhr.send(``);
+xhr1.send(``);
 
 
+let xhr2 = new XMLHttpRequest();
+
+// Настройка запроса
+xhr2.open('POST', 'learnProgressPercent.php', true);
+xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Установка заголовка Content-Type
+
+// Обработка ответа от сервера
+xhr2.onreadystatechange = function () {
+  if (xhr2.readyState == 4 && xhr2.status == 200) {
+    console.log(xhr2.responseText);
+    // Обработка успешного ответа от сервера
+    setProgressFromBack(xhr2.responseText * 100);
+  }
+};
+
+// Отправка данных на сервер
+xhr2.send(``);

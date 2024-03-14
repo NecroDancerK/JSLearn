@@ -47,31 +47,3 @@ if ($pageId !== null && is_numeric($pageId)) {
     echo "<span class=\"hidden\" id=\"answersStr\">$answersStr</span>";
   }
 }
-
-$stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
-$stmt->bindParam(':user_id', $userId);
-
-$stmt->execute();
-$row = $stmt->fetch();
-
-if (!$row) {
-  $data = [];
-  $json_data = json_encode($data);
-
-  $sql = "INSERT INTO progress (user_id, done_tasks) VALUES (:user_id, :done_tasks);";
-
-  // Подготавливаем выражение
-  $statement = $pdo->prepare($sql);
-
-  // Передаем значения переменных и выполняем запрос
-  try {
-    $statement->execute(
-      array(
-        ':user_id' => $userId,
-        ':done_tasks' => $json_data,
-      )
-    );
-  } catch (PDOException $e) {
-    die("Ошибка при добавлении данных: " . $e->getMessage());
-  }
-}

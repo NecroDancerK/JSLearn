@@ -23,7 +23,7 @@ $isAdmin = currentUser()["is_admin"];
 
 $userId = currentUser()["id"];
 
-$stmt = $pdo->prepare("SELECT done_tasks FROM progress WHERE user_id = :user_id");
+$stmt = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
 $stmt->bindParam(':user_id', $userId);
 
 $stmt->execute();
