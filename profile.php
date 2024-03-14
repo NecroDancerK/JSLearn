@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once __DIR__ . '/php/helpers.php';
 
 checkAuth();
@@ -25,6 +27,10 @@ $stmt = $pdo->prepare("SELECT COUNT(*) as tasksCount FROM tasks");
 $stmt->execute();
 $tasksCount = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
+$learnFileCount = $_SESSION['learnFileCount']; // Получение переменной из сессии
+$countLearn = $_SESSION['countLearn'];
+
 ?>
 
 <!DOCTYPE html>
@@ -41,10 +47,19 @@ $tasksCount = $stmt->fetch(PDO::FETCH_ASSOC);
     <h1 style="margin: 0px;">Привет,
       <?php echo $user['name'] ?>!
     </h1>
-    <label for="tasks">Прогресс заданий: Выполнено <?= count($data) ?> из <?= $tasksCount["tasksCount"] ?></label>
+    <label for="tasks">Изучено тем:
+      <?= count($countLearn) ?> из
+      <?= $learnFileCount ?>
+    </label>
 
-        <progress id="tasks" value="<?= count($data) ?>"
-            max="<?= $tasksCount["tasksCount"] ?>"></progress>
+    <progress id="tasks" value="<?= count($countLearn) ?>" max="<?=  $learnFileCount?>"></progress>
+    <label for="tasks">Прогресс заданий: Выполнено
+      <?= count($data) ?> из
+      <?= $tasksCount["tasksCount"] ?>
+    </label>
+
+    <progress id="tasks" value="<?= count($data) ?>" max="<?= $tasksCount["tasksCount"] ?>"></progress>
+
     <form action="php/actions/logout.php" method="post">
       <button class="" role="button">Выйти из аккаунта</button>
     </form>

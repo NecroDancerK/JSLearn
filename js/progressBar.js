@@ -1,28 +1,38 @@
 function setProgressFromBack(percent) {
-  const progress = document.querySelector('.progress');
+  const progress = document.querySelectorAll('.progress');
 
   const circumference = 125.6; // окружность круга
   const offset = circumference - (percent / 100) * circumference;
 
-  progress.style.strokeDashoffset = offset;
+  for (const elem of progress) {
+    elem.style.strokeDashoffset = offset;
+  }
+
+  // progress.forEach(element => {
+  //   element
+  // });
 }
 
 function setProgressFromFront(percent) {
-  const progress = document.querySelector('.progress');
+  const progress = document.querySelectorAll('.progress');
 
   const circumference = 125.6; // окружность круга
   const offset = circumference - (percent / 100) * circumference;
 
-  // Добавляем класс для запуска анимации
-  progress.classList.add('animate');
-  // Устанавливаем новое значение атрибута stroke-dashoffset для запуска анимации
-  progress.style.strokeDashoffset = offset;
+
+  for (const elem of progress) {
+    // Добавляем класс для запуска анимации
+    elem.classList.add('animate');
+    // Устанавливаем новое значение атрибута stroke-dashoffset для запуска анимации
+    elem.style.strokeDashoffset = offset;
 
 
-  // Устанавливаем таймаут для удаления класса анимации после завершения
-  setTimeout(() => {
-    progress.classList.remove('animate');
-  }, 500); // Длительность анимации в миллисекундах
+    // Устанавливаем таймаут для удаления класса анимации после завершения
+    setTimeout(() => {
+      elem.classList.remove('animate');
+    }, 500); // Длительность анимации в миллисекундах
+  }
+
 }
 
 
@@ -48,7 +58,7 @@ xhr1.send(``);
 let xhr2 = new XMLHttpRequest();
 
 // Настройка запроса
-xhr2.open('POST', 'learnProgressPercent.php', true);
+xhr2.open('POST', 'learnProgress.php', true);
 xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Установка заголовка Content-Type
 
 // Обработка ответа от сервера

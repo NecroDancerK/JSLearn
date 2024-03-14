@@ -56,9 +56,9 @@ function handleIntersection(entries, observer) {
       // Обработка ответа от сервера
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-          setProgressFromBack(xhr.responseText);
+          console.log(xhr.responseText);
+          setProgressFromFront(xhr.responseText * 100);
           // Обработка успешного ответа от сервера
-          console.log();
 
         }
       };

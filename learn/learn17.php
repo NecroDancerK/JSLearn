@@ -205,10 +205,14 @@
       <div class="buttons flex justify-between my-4 text-white font-bold text-lg items-center">
         <a class="bg-red-600 p-3 rounded" href="learn.php" id="btn-prev">Назад</a>
         <div
-          class="profile profile-observing rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700">
-          <a href="./profile.php">
+          class="profile relative profile-observing rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700">
+          <a class="relative z-10" href="../profile.php">
             <img src="../img/avatar(1).webp" alt="">
           </a>
+
+          <svg class="progress-circle absolute -bottom-[11px] -right-[10px]" width="60" height="60">
+            <circle class="progress" cx="30" cy="30" r="20" stroke-width="4" fill="transparent" />
+          </svg>
         </div>
         <a class="bg-red-600 p-3 rounded" href="learn2.php" id="btn-next">Вперед</a>
       </div>
