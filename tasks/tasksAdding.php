@@ -17,10 +17,10 @@ if ($isAdmin == 1) { ?>
 
 
 
-    if (!empty($title) && !empty($task) && !empty($taskNumber) && !empty($taskTheme)) {
+    if (!empty ($title) && !empty ($task) && !empty ($taskNumber) && !empty ($taskTheme)) {
       $pdo = getPDO();
 
-      if (!empty($newTheme)) {
+      if (!empty ($newTheme)) {
 
         // Проверяем, существует ли уже такая тема в базе данных
         $stmt = $pdo->prepare("SELECT * FROM tasks_themes WHERE name = :newTheme");
@@ -57,7 +57,7 @@ if ($isAdmin == 1) { ?>
             )
           );
         } catch (PDOException $e) {
-          die("Ошибка при добавлении данных: " . $e->getMessage());
+          die ("Ошибка при добавлении данных: " . $e->getMessage());
         }
       } else {
         $sql = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
@@ -76,19 +76,13 @@ if ($isAdmin == 1) { ?>
             )
           );
         } catch (PDOException $e) {
-          die("Ошибка при добавлении данных: " . $e->getMessage());
+          die ("Ошибка при добавлении данных: " . $e->getMessage());
         }
       }
     }
   }
 
-  $pdo = getPDO();
-
-  $stmt = $pdo->prepare("SELECT * FROM `tasks_themes`");
-
-  $stmt->execute();
-
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $results = getTasksIdsFromDB();
 
   ?>
 
@@ -99,20 +93,12 @@ if ($isAdmin == 1) { ?>
   include_once "components/mainHead.php";
   ?>
 
-  <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
+  <body <?php if (isset ($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
     <div class="wrapper 2xl:h-screen xl:h-auto dark:bg-gray-900">
       <?php
       require_once "components/header.php";
       ?>
-      <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
-        <a href="../learn/learn1.php"
-          class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Учебник</a>
-        <a href="tasks.php?task=1" class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
-        <a href="../tests.php"
-          class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
-        <a href="../playground.php"
-          class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
-      </div>
+      <?php require_once "components/headerNav.php"; ?>
       <?php require_once "components/aside.php"; ?>
       <main class="pt-28 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
         <h2 class="text-5xl mb-5">Добавление упражнений:</h2>

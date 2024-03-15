@@ -6,7 +6,7 @@
       </a>
     </div>
     <form class="relative" action="" method="get">
-      <input class="search rounded-3xl border py-2 pr-10 pl-4 outline-red-600 dark:bg-gray-800 dark:border-gray-950"
+      <input class="search rounded-3xl border py-2 pr-10 pl-4 outline-red-600 dark:bg-gray-800 dark:border-gray-950 dark:text-white"
         type="search" name="search" placeholder="Search" id="">
       <div class="rounded-full w-10 h-10 absolute right-[1px] top-[1px] hover:bg-gray-200 dark:hover:bg-gray-700">
         <button

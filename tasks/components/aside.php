@@ -11,10 +11,7 @@ $statement1 = $pdo->query($query1);
 
 $results1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
 
-$query2 = "SELECT id FROM `tasks` ORDER BY `tasks`.`task_theme_id`, `tasks`.`task_number` ASC;";
-$statement2 = $pdo->query($query2);
-
-$results2 = $statement2->fetchAll(PDO::FETCH_NUM);
+$results2 = getTasksIdsFromDB();
 
 
 $arrayId = [];
@@ -48,9 +45,6 @@ $index = array_search($pageId, $arrayId);
 
       <?php
       $prev = null;
-
-      // var_dump($userId);
-
       echo "<span class=\"hidden\" id=\"arrayId\">" . array_key_exists($index + 1, $arrayId) . "</span>";
 
       foreach ($results1 as $value) {

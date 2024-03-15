@@ -6,13 +6,13 @@ if ($isAdmin == 1) { ?>
   <?php
   $pdo = getPDO();
 
-  $pageId = isset($_GET['task']) ? $_GET['task'] : null;
+  $pageId = isset ($_GET['task']) ? $_GET['task'] : null;
 
 
 
   if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    if (isset($_POST['taskId'])) {
+    if (isset ($_POST['taskId'])) {
 
       $userId = currentUser()["id"];
       $learnId = $_POST['taskId'];
@@ -57,35 +57,18 @@ if ($isAdmin == 1) { ?>
 
   ?>
 
-  <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
+  <body <?php if (isset ($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark" <?php } ?>>
 
     <div class="wrapper h-screen  dark:bg-gray-900">
       <?php
 
       require_once "components/header.php";
 
-      $pdo = getPDO();
+      $results = getTasksIdsFromDB();
 
-      $query = "SELECT id FROM `tasks`;";
-      $statement = $pdo->query($query);
-
-      $results = $statement->fetchAll(PDO::FETCH_NUM);
-
-      var_dump($results[0]);
+      // var_dump($results[0]);
       ?>
-      <div class="flex justify-between text-center w-full fixed left-0 top-[66px]">
-        <a href="../learn/learn1.php"
-          class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Учебник</a>
-        <a href="tasks.php?task=<?php
-        if (!empty($results)) {
-          echo $results[0][0];
-        }
-        ?>" class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
-        <a href="../tests.php"
-          class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
-        <a href="../playground.php"
-          class="bg-gray-800 dark:bg-gray-700 dark:hover:bg-black w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Playground</a>
-      </div>
+      <?php require_once "components/headerNav.php"; ?>
       <?php require_once "components/aside.php"; ?>
       <main class="2xl:pt-64 pt-44 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
 
@@ -96,8 +79,8 @@ if ($isAdmin == 1) { ?>
 
         <div class="exercise bg-gray-200 dark:bg-gray-700 w-full h-64 rounded relative mb-7 pt-3">
           <pre class="pl-4">
-                  <p class="text-lg"><?php echo $task ?></p>
-                  </pre>
+                        <p class="text-lg"><?php echo $task ?></p>
+                        </pre>
         </div>
         <form class="flex justify-between items-center" action="taskDelete.php" method="post">
           <p class="2xl:text-2xl xl:text-xl"><span class="font-bold">Вы</span> уверены, что хотите удалить это упражнение?

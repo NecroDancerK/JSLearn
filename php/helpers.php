@@ -17,12 +17,12 @@ function setValidationError($fieldName, $message)
 
 function hasValidationError($fieldName)
 {
-  return isset($_SESSION['validation'][$fieldName]);
+  return isset ($_SESSION['validation'][$fieldName]);
 }
 
 function validationErrorAttr($fieldName)
 {
-  return isset($_SESSION['validation'][$fieldName]) ? 'aria-invalid="true"' : '';
+  return isset ($_SESSION['validation'][$fieldName]) ? 'aria-invalid="true"' : '';
 }
 
 function validationErrorMessage($fieldName)
@@ -56,7 +56,7 @@ function uploadFile($file, $prefix = '')
   $fileName = $prefix . '_' . time() . ".$ext";
 
   if (!move_uploaded_file($file['tmp_name'], "$uploadPath/$fileName")) {
-    die('Ошибка при загрузке файла на сервер');
+    die ('Ошибка при загрузке файла на сервер');
   }
 
   return "uploads/$fileName";
@@ -69,7 +69,7 @@ function setMessage($key, $message)
 
 function hasMessage($key)
 {
-  return isset($_SESSION['message'][$key]);
+  return isset ($_SESSION['message'][$key]);
 }
 
 function getMessage($key)
@@ -84,7 +84,7 @@ function getPDO()
   try {
     return new \PDO('mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';charset=utf8;dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD);
   } catch (\PDOException $e) {
-    die("Connection error: {$e->getMessage()}");
+    die ("Connection error: {$e->getMessage()}");
   }
 }
 
@@ -102,7 +102,7 @@ function currentUser()
 {
   $pdo = getPDO();
 
-  if (!isset($_SESSION['user'])) {
+  if (!isset ($_SESSION['user'])) {
     return false;
   }
 
@@ -121,14 +121,14 @@ function logout()
 
 function checkAuth()
 {
-  if (!isset($_SESSION['user']['id'])) {
+  if (!isset ($_SESSION['user']['id'])) {
     redirect('/');
   }
 }
 
 function checkGuest()
 {
-  if (isset($_SESSION['user']['id'])) {
+  if (isset ($_SESSION['user']['id'])) {
     redirect('learn/learn1.php');
   }
 }
@@ -162,7 +162,7 @@ function setJSONProgressForUser()
         )
       );
     } catch (PDOException $e) {
-      die("Ошибка при добавлении данных: " . $e->getMessage());
+      die ("Ошибка при добавлении данных: " . $e->getMessage());
     }
   }
 
@@ -193,4 +193,16 @@ function checkJSON($taskId)
     $stmt->bindParam(':user_id', $userId);
     $stmt->execute();
   }
+}
+
+function getTasksIdsFromDB()
+{
+  $pdo = getPDO();
+
+  $query = "SELECT id FROM `tasks` ORDER BY `tasks`.`task_theme_id`, `tasks`.`task_number` ASC;";
+  $statement = $pdo->query($query);
+
+  $results = $statement->fetchAll(PDO::FETCH_NUM);
+
+  return $results;
 }
