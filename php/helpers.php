@@ -206,3 +206,16 @@ function getTasksIdsFromDB()
 
   return $results;
 }
+
+function getThemesFromDB()
+{
+  $pdo = getPDO();
+
+  $stmt = $pdo->prepare("SELECT * FROM `tasks_themes`");
+
+  $stmt->execute();
+
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  return $result;
+}

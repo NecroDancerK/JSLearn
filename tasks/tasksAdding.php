@@ -82,7 +82,7 @@ if ($isAdmin == 1) { ?>
     }
   }
 
-  $results = getTasksIdsFromDB();
+  $result = getThemesFromDB();
 
   ?>
 

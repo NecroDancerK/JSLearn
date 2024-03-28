@@ -2,3 +2,4 @@
 <script src="../js/script.js"></script>
 <script src="../js/progressBar.js"></script>
 <script src="../js/tasks.js"></script>
+<script src="../js/testsAdding.js"></script>

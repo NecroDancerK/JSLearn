@@ -2,6 +2,10 @@ function goBack() {
   window.history.back();
 }
 
+const goBackBtn = document.getElementById('goBack');
+
+if (goBackBtn) goBackBtn.addEventListener('click', goBack);
+
 // Автоматическое выставление активной вкладки сайдбара
 const sidebar = document.getElementById("sidebar-content");
 const sidebarItems = sidebar.getElementsByTagName("a");
@@ -10,8 +14,10 @@ const currentURL = window.location.href.split("/").pop();
 
 const pageNum = +currentURL.match(/\d+/)[0];
 
+console.log(pageNum);
+
 for (const item of sidebarItems) {
-  if (item.getAttribute("href").match(/\d+/)[0] == pageNum) {
+  if (item.getAttribute("href").match(/\d+/) == pageNum) {
     item.classList.remove("hover:bg-neutral-500", "hover:text-white");
     item.classList.add("bg-red-600", "text-white");
   }

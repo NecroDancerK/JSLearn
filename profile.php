@@ -40,7 +40,7 @@ $countLearn = $_SESSION['countLearn'];
 <body>
 
   <div class="card home profile">
-    <a href="" onclick="goBack()" style="position: absolute; top: 40px; right: 40px; color: inherit;">
+    <a href="" id="goBack" style="position: absolute; top: 40px; right: 40px; color: inherit;">
       <i class="fa-solid fa-x fa-2xl "></i>
     </a>
     <img class="avatar" src="<?php echo $user['avatar'] ?>" alt="<?php echo $user['name'] ?>">

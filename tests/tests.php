@@ -26,28 +26,36 @@ $results = getTasksIdsFromDB();
       <h3 class="text-2xl mb-5">Вопрос 1 из 25</h3>
       <p class="text-xl mb-10">Внутри какого HTML-элемента мы помещаем JavaScript?</p>
 
-      <div class="mb-10 space-y-5">
-        <div>
+      <div class="mb-10 space-y-1">
+        <label class="block relative has-[:checked]:bg-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 text-xl p-4 pl-10 select-none" for="script">
+          &lt;script&gt;
           <input class="hidden peer" type="radio" id="script" name="drone" value="script" checked />
-          <label class="peer-checked: bg-gray-400 text-black rounded-md p-2" for="script">&lt;script&gt;</label>
-        </div>
+          <span
+            class="block w-5 h-5 absolute left-3 top-[23px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
+        </label>
 
-        <div>
+        <label class="block relative has-[:checked]:bg-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 text-xl p-4 pl-10 select-none" for="scripting">
+          &lt;scripting&gt;
           <input class="hidden peer" type="radio" id="scripting" name="drone" value="scripting" />
-          <label class="peer-checked: bg-gray-400 text-black rounded-md p-2" for="scripting">&lt;scripting&gt;</label>
-        </div>
+          <span
+            class="block w-5 h-5 absolute left-3 top-[23px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
+        </label>
 
-        <div>
+        <label class="block relative has-[:checked]:bg-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 text-xl p-4 pl-10 select-none" for="javascript">
+          &lt;javascript&gt;
           <input class="hidden peer" type="radio" id="javascript" name="drone" value="javascript" />
-          <label class="peer-checked: bg-gray-400 text-black rounded-md p-2" for="javascript">&lt;javascript&gt;</label>
-        </div>
+          <span
+            class="block w-5 h-5 absolute left-3 top-[23px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
+        </label>
 
-        <div>
+        <label class="block relative has-[:checked]:bg-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 text-xl p-4 pl-10 select-none" for="js">
+          &lt;js&gt;
           <input class="hidden peer" type="radio" id="js" name="drone" value="js" />
-          <label class="peer-checked: bg-gray-400 text-black rounded-md p-2" for="js">&lt;js&gt;</label>
-        </div>
+          <span
+            class="block w-5 h-5 absolute left-3 top-[23px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
+        </label>
       </div>
-      <a class="bg-red-600 p-3 rounded text-white" href="learn2.php" id="btn-next">Cледующий</a>
+      <a class="bg-red-600 p-3 rounded text-white font-bold" href="#" id="btn-next">Cледующий</a>
     </main>
     <footer></footer>
   </div>

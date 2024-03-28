@@ -3,7 +3,7 @@
   <div class="scrollbox overflow-auto">
     <div class="scrollbox-inner pb-2" id="sidebar-content">
       <h3 class="text-xl font-bold mb-2 pl-2 mt-4 dark:text-white">Глава 1. Введение в JavaScript</h3>
-      <a class="block pl-2 py-2  font-semibold hover:bg-neutral-500 hover:text-white" href="learn1.php">
+      <a class="block pl-2 py-2  font-semibold hover:bg-neutral-500 hover:text-white" href="testsAdding.php">
         Что такое JavaScript
       </a>
       <a class="block pl-2 py-2  font-semibold hover:bg-neutral-500 hover:text-white" href="learn2.php">
