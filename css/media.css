@@ -1,0 +1,46 @@
+@media (max-width: 1366px) {
+  .register {
+    margin-bottom: 10px;
+    font-size: 30px;
+  }
+
+  input {
+    margin: 0;
+
+  }
+
+  label {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .card {
+    padding: 15px;
+    padding-inline: 20px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  input[type="file"] {
+    font-size: 16px;
+
+  }
+
+  .avatar {
+    width: 200px;
+    height: 200px;
+  }
+
+  .progress {
+    margin-bottom: 0;
+  }
+
+  .hello {
+    font-size: 30px;
+  }
+}
+

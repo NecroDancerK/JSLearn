@@ -7,7 +7,7 @@
 
 .progress {
   stroke: red;
-  /* stroke: #4caf50; */
+  /* stroke: #dc2626; */
   stroke-dasharray: 125.6;
   /* окружность круга */
   stroke-dashoffset: 125.6;

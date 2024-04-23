@@ -15,11 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $testId = $_POST['testId'];
     $testResult = $_POST['result'];
 
-    $stmt = $pdo->prepare("SELECT done_tests FROM tests_progress WHERE user_id = :user_id");
-    $stmt->bindParam(':user_id', $userId);
+    $stmt1 = $pdo->prepare("SELECT done_tests FROM tests_progress WHERE user_id = :user_id");
+    $stmt1->bindParam(':user_id', $userId);
 
-    $stmt->execute();
-    $row = $stmt->fetch();
+    $stmt1->execute();
+    $row = $stmt1->fetch();
 
     if ($row) {
       // Распарсим JSON строку в массив PHP
@@ -33,12 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         // SQL запрос для обновления JSON данных
         $update_sql = "UPDATE tests_progress SET done_tests = :done_tests WHERE user_id = :user_id";
-        $stmt = $pdo->prepare($update_sql);
-        $stmt->bindParam(':done_tests', $updated_json_data);
-        $stmt->bindParam(':user_id', $userId);
-        $stmt->execute();
+        $stmt1 = $pdo->prepare($update_sql);
+        $stmt1->bindParam(':done_tests', $updated_json_data);
+        $stmt1->bindParam(':user_id', $userId);
+        $stmt1->execute();
 
-        echo "JSON данные успешно обновлены";
+        // echo "JSON данные успешно обновлены";
       }
 
     } else {
@@ -48,14 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       ];
       $json_data = json_encode($data);
 
-      $sql = "INSERT INTO tests_progress (user_id, done_tests) VALUES (:user_id, :done_tests);";
+      $sql1 = "INSERT INTO tests_progress (user_id, done_tests) VALUES (:user_id, :done_tests);";
 
       // Подготавливаем выражение
-      $stmt = $pdo->prepare($sql);
+      $stmt1 = $pdo->prepare($sql1);
 
       // Передаем значения переменных и выполняем запрос
       try {
-        $stmt->execute(
+        $stmt1->execute(
           array(
             ':user_id' => $userId,
             ':done_tests' => $json_data,

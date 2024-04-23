@@ -8,9 +8,6 @@ function setProgressFromBack(percent) {
     elem.style.strokeDashoffset = offset;
   }
 
-  // progress.forEach(element => {
-  //   element
-  // });
 }
 
 function setProgressFromFront(percent) {
@@ -64,7 +61,6 @@ xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // �
 // Обработка ответа от сервера
 xhr2.onreadystatechange = function () {
   if (xhr2.readyState == 4 && xhr2.status == 200) {
-    console.log(xhr2.responseText);
     // Обработка успешного ответа от сервера
     setProgressFromBack(xhr2.responseText * 100);
   }
@@ -72,3 +68,21 @@ xhr2.onreadystatechange = function () {
 
 // Отправка данных на сервер
 xhr2.send(``);
+
+
+let xhr3 = new XMLHttpRequest();
+
+// Настройка запроса
+xhr3.open('POST', 'getTestsProgress.php', true);
+xhr3.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Установка заголовка Content-Type
+
+// Обработка ответа от сервера
+xhr3.onreadystatechange = function () {
+  if (xhr3.readyState == 4 && xhr3.status == 200) {
+    // Обработка успешного ответа от сервера
+    setProgressFromBack(xhr3.responseText * 100);
+  }
+};
+
+// Отправка данных на сервер
+xhr3.send(``);

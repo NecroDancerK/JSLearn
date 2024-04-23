@@ -11,7 +11,7 @@ function handleIntersection(entries, observer) {
       // Обработка ответа от сервера
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-          console.log(xhr.responseText);
+
           setProgressFromFront(xhr.responseText * 100);
           // Обработка успешного ответа от сервера
 
@@ -21,7 +21,6 @@ function handleIntersection(entries, observer) {
       // Отправка данных на сервер
       xhr.send(`learnId=${pageNum}`);
 
-      console.log('Элемент появился на экране!');
       // Можно также остановить отслеживание появления элемента, если нужно:
       observer.unobserve(entry.target);
     }

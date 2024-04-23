@@ -19,32 +19,32 @@ if ($isAdmin == 1) { ?>
       if (!empty ($newTheme)) {
 
         // Проверяем, существует ли уже такая тема в базе данных
-        $stmt = $pdo->prepare("SELECT * FROM tasks_themes WHERE name = :newTheme");
-        $stmt->execute(array(':newTheme' => $newTheme));
-        $existingTheme = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt1 = $pdo->prepare("SELECT * FROM tasks_themes WHERE name = :newTheme");
+        $stmt1->execute(array(':newTheme' => $newTheme));
+        $existingTheme = $stmt1->fetch(PDO::FETCH_ASSOC);
 
         // Если тема уже существует, выводим сообщение об ошибке
         if ($existingTheme) {
           echo "Ошибка: Тема \"$newTheme\" уже существует.";
         } else {
           // Вставляем новую тему в базу данных
-          $stmt = $pdo->prepare("INSERT INTO tasks_themes (name) VALUES (:newTheme)");
-          $stmt->execute(array(':newTheme' => $newTheme));
+          $stmt1 = $pdo->prepare("INSERT INTO tasks_themes (name) VALUES (:newTheme)");
+          $stmt1->execute(array(':newTheme' => $newTheme));
         }
 
-        $stmt = $pdo->prepare("SELECT id FROM tasks_themes WHERE name = :newTheme");
-        $stmt->execute(array(':newTheme' => $newTheme));
-        $taskThemeArray = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt1 = $pdo->prepare("SELECT id FROM tasks_themes WHERE name = :newTheme");
+        $stmt1->execute(array(':newTheme' => $newTheme));
+        $taskThemeArray = $stmt1->fetch(PDO::FETCH_ASSOC);
         $taskTheme = $taskThemeArray["id"];
 
-        $sql = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
+        $sql1 = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
 
         // Подготавливаем выражение
-        $stmt = $pdo->prepare($sql);
+        $stmt1 = $pdo->prepare($sql1);
 
         // Передаем значения переменных и выполняем запрос
         try {
-          $stmt->execute(
+          $stmt1->execute(
             array(
               ':task_number' => $taskNumber,
               ':task_theme_id' => $taskTheme,
@@ -56,14 +56,14 @@ if ($isAdmin == 1) { ?>
           die ("Ошибка при добавлении данных: " . $e->getMessage());
         }
       } else {
-        $sql = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
+        $sql1 = "INSERT INTO tasks (task_number, task_theme_id, title, task) VALUES (:task_number, :task_theme_id, :title, :task);";
 
         // Подготавливаем выражение
-        $stmt = $pdo->prepare($sql);
+        $stmt1 = $pdo->prepare($sql1);
 
         // Передаем значения переменных и выполняем запрос
         try {
-          $stmt->execute(
+          $stmt1->execute(
             array(
               ':task_number' => $taskNumber,
               ':task_theme_id' => $taskTheme,

@@ -1,6 +1,7 @@
 let rightAnswer;
 let testLength;
 
+
 // Получаем параметры из URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -62,6 +63,5 @@ function checkAnswer() {
   localStorage.setItem('currentScore', currentScore);
   localStorage.setItem('testLength', testLength);
 }
-
 
 

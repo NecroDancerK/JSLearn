@@ -5,7 +5,7 @@
         <img class="w-9" src="../img/JavaScript-logo.webp" alt="">
       </a>
     </div>
-    <form class="relative" action="" method="get">
+    <!-- <form class="relative" action="" method="get">
       <input class="search rounded-3xl border py-2 pr-10 pl-4 outline-red-600 dark:bg-gray-800 dark:border-gray-950 dark:text-white"
         type="search" name="search" placeholder="Search" id="">
       <div class="rounded-full w-10 h-10 absolute right-[1px] top-[1px] hover:bg-gray-200 dark:hover:bg-gray-700">
@@ -15,10 +15,12 @@
           <img src="../img/free-icon-search-4024513.webp" alt="">
         </button>
       </div>
-    </form>
+    </form> -->
     <button class="rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700"
       onclick="switchTheme()">
-      <img id="themeBtn" class="w-6 h-6" src="../img/free-icon-dark-mode-12657259.webp" alt="">
+      <img id="themeBtn" class="w-6 h-6" <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?>
+    src="../img/free-icon-dark-mode-12657259.webp" <?php } 
+    else { ?> src="../img/free-icon-dark-mode-12657273.webp" <?php } ?> alt="">
     </button>
   </div>
   <h2 class="text-red-600 font-bold text-2xl dark:text-white">

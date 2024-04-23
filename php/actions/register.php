@@ -66,10 +66,10 @@ $params = [
     'password' => password_hash($password, PASSWORD_DEFAULT)
 ];
 
-$stmt = $pdo->prepare($query);
+$stmt1 = $pdo->prepare($query);
 
 try {
-    $stmt->execute($params);
+    $stmt1->execute($params);
 } catch (\Exception $e) {
     if ($e->getCode() == '23000') {
         setValidationError('email', 'Данный email уже зарегистрирован');

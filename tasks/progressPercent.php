@@ -8,11 +8,11 @@ $pdo = getPDO();
 
 $userId = $user["id"];
 
-$stmt = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
-$stmt->bindParam(':user_id', $userId);
+$stmt1 = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
+$stmt1->bindParam(':user_id', $userId);
 
-$stmt->execute();
-$row = $stmt->fetch();
+$stmt1->execute();
+$row = $stmt1->fetch();
 
 $data = json_decode($row['done_tasks'], true);
 
@@ -20,9 +20,9 @@ $arrayJSON = array_keys($data);
 
 $arrayTasks = [];
 
-$stmt = $pdo->prepare("SELECT COUNT(*) as tasksCount FROM tasks");
-$stmt->execute();
-$tasksCount = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt1 = $pdo->prepare("SELECT COUNT(*) as tasksCount FROM tasks");
+$stmt1->execute();
+$tasksCount = $stmt1->fetch(PDO::FETCH_ASSOC);
 
 
 echo count($arrayJSON)/$tasksCount["tasksCount"];

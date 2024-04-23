@@ -13,18 +13,18 @@ $pdo = getPDO();
 try {
 
   // Подготавливаем запрос с параметром
-  $stmt = $pdo->prepare("SELECT questions FROM tests WHERE id = :testId");
+  $stmt1 = $pdo->prepare("SELECT questions FROM tests WHERE id = :testId");
   // Привязываем параметр к значению
-  $stmt->bindParam(':testId', $testId, PDO::PARAM_INT);
+  $stmt1->bindParam(':testId', $testId, PDO::PARAM_INT);
 
   // Выполняем запрос
-  $stmt->execute();
+  $stmt1->execute();
 
   // Устанавливаем режим выборки результата в ассоциативный массив
-  $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  $stmt1->setFetchMode(PDO::FETCH_ASSOC);
 
 
-  while ($row = $stmt->fetch()) {
+  while ($row = $stmt1->fetch()) {
     // Извлекаем JSON из ячейки и преобразуем его в ассоциативный массив
     $test = json_decode($row['questions'], true);
   }

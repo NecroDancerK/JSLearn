@@ -15,18 +15,18 @@ $pdo = getPDO();
 try {
 
   // Подготавливаем запрос с параметром
-  $stmt = $pdo->prepare("SELECT * FROM tests WHERE id = :testId");
+  $stmt1 = $pdo->prepare("SELECT * FROM tests WHERE id = :testId");
   // Привязываем параметр к значению
-  $stmt->bindParam(':testId', $testId, PDO::PARAM_INT);
+  $stmt1->bindParam(':testId', $testId, PDO::PARAM_INT);
 
   // Выполняем запрос
-  $stmt->execute();
+  $stmt1->execute();
 
   // Устанавливаем режим выборки результата в ассоциативный массив
-  $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  $stmt1->setFetchMode(PDO::FETCH_ASSOC);
 
 
-  while ($row = $stmt->fetch()) {
+  while ($row = $stmt1->fetch()) {
     $test = $row;
   }
 
@@ -48,8 +48,8 @@ if ($isAdmin == 1) {
       $testId = $_POST['testId'];
 
       // Удаление теста из базы данных
-      $stmt = $pdo->prepare('DELETE FROM tests WHERE id = ?');
-      $stmt->execute([$testId]);
+      $stmt1 = $pdo->prepare('DELETE FROM tests WHERE id = ?');
+      $stmt1->execute([$testId]);
 
       checkTestsJSON($testId);
       header("Location: tests.php");

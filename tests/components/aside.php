@@ -81,6 +81,10 @@ $index = array_search($pageId, $arrayId);
         </a>
         <?php $prev = $testItem["name"];
       } ?>
+      <a class="block pl-2 py-2 font-semibold bg-red-500 text-white hover:bg-red-700 hover:text-white"
+        href="testsViewResults.php">
+        Посмотреть результаты тестов
+      </a>
       <?php if ($isAdmin == 1) { ?>
         <a class="block pl-2 py-2 font-semibold bg-red-600 text-white hover:bg-red-700 hover:text-white"
           href="testsAdding.php">

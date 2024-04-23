@@ -32,32 +32,32 @@ if ($isAdmin == 1) { ?>
       if (!empty($newTheme)) {
 
         // Проверяем, существует ли уже такая тема в базе данных
-        $stmt = $pdo->prepare("SELECT * FROM tests_themes WHERE name = :newTheme");
-        $stmt->execute(array(':newTheme' => $newTheme));
-        $existingTheme = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt1 = $pdo->prepare("SELECT * FROM tests_themes WHERE name = :newTheme");
+        $stmt1->execute(array(':newTheme' => $newTheme));
+        $existingTheme = $stmt1->fetch(PDO::FETCH_ASSOC);
 
         // Если тема уже существует, выводим сообщение об ошибке
         if ($existingTheme) {
           echo "Ошибка: Тема \"$newTheme\" уже существует.";
         } else {
           // Вставляем новую тему в базу данных
-          $stmt = $pdo->prepare("INSERT INTO tests_themes (name) VALUES (:newTheme)");
-          $stmt->execute(array(':newTheme' => $newTheme));
+          $stmt1 = $pdo->prepare("INSERT INTO tests_themes (name) VALUES (:newTheme)");
+          $stmt1->execute(array(':newTheme' => $newTheme));
         }
 
-        $stmt = $pdo->prepare("SELECT id FROM tests_themes WHERE name = :newTheme");
-        $stmt->execute(array(':newTheme' => $newTheme));
-        $testThemeArray = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt1 = $pdo->prepare("SELECT id FROM tests_themes WHERE name = :newTheme");
+        $stmt1->execute(array(':newTheme' => $newTheme));
+        $testThemeArray = $stmt1->fetch(PDO::FETCH_ASSOC);
         $testTheme = $testThemeArray["id"];
 
-        $sql = "INSERT INTO tests (title, test_theme_id, questions) VALUES (:title, :test_theme_id, :questions);";
+        $sql1 = "INSERT INTO tests (title, test_theme_id, questions) VALUES (:title, :test_theme_id, :questions);";
 
         // Подготавливаем выражение
-        $stmt = $pdo->prepare($sql);
+        $stmt1 = $pdo->prepare($sql1);
 
         // Передаем значения переменных и выполняем запрос
         try {
-          $stmt->execute(
+          $stmt1->execute(
             array(
               ':title' => $testName,
               ':test_theme_id' => $testTheme,
@@ -69,14 +69,14 @@ if ($isAdmin == 1) { ?>
         }
       } else {
 
-        $sql = "INSERT INTO tests (title, test_theme_id, questions) VALUES (:title, :test_theme_id, :questions);";
+        $sql1 = "INSERT INTO tests (title, test_theme_id, questions) VALUES (:title, :test_theme_id, :questions);";
 
         // Подготавливаем выражение
-        $stmt = $pdo->prepare($sql);
+        $stmt1 = $pdo->prepare($sql1);
 
         // Передаем значения переменных и выполняем запрос
         try {
-          $stmt->execute(
+          $stmt1->execute(
             array(
               ':title' => $testName,
               ':test_theme_id' => $testTheme,

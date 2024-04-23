@@ -4,12 +4,14 @@ checkGuest();
 ?>
 
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru" <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> data-theme="dark"
+  <?php } else { ?> data-theme="light" <?php } ?>>
 <?php include_once __DIR__ . '/components/head.php'?>
+<link rel="stylesheet" href="css/media.css">
 <body>
 
 <form class="card" action="php/actions/register.php" method="post" enctype="multipart/form-data">
-    <h2>Регистрация</h2>
+    <h2 class="register">Регистрация</h2>
 
     <label for="name">
         Имя
@@ -82,6 +84,7 @@ checkGuest();
     <fieldset>
         <label for="terms">
             <input
+            class="checkbox"
                 type="checkbox"
                 id="terms"
                 name="terms"
@@ -91,13 +94,14 @@ checkGuest();
     </fieldset>
 
     <button
+        class="btn"
         type="submit"
         id="submit"
         disabled
     >Продолжить</button>
 </form>
 
-<p>У меня уже есть <a href="/">аккаунт</a></p>
+<p>У меня уже есть <a class="acc_link" href="/">аккаунт</a></p>
 
 <?php include_once __DIR__ . '/components/scripts.php' ?>
 </body>

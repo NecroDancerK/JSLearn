@@ -5,7 +5,7 @@ checkGuest();
 ?>
 
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru" <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> data-theme="dark" <?php } else { ?> data-theme="light" <?php } ?>>
 <?php include_once __DIR__ . '/components/head.php' ?>
 
 <body>
@@ -38,7 +38,7 @@ checkGuest();
     <button class="btn" type="submit" id="submit">Продолжить</button>
   </form>
 
-  <p>У меня еще нет <a href="/register.php">аккаунта</a></p>
+  <p>У меня еще нет <a class="acc_link" href="/register.php">аккаунта</a></p>
 
   <?php include_once __DIR__ . '/components/scripts.php' ?>
 </body>

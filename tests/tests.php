@@ -5,27 +5,6 @@
 include_once __DIR__ . '../components/mainHead.php';
 include_once "testsScript.php";
 
-session_start();
-
-// Функция для начала отсчета времени
-function start_timer()
-{
-  $_SESSION['start_time'] = microtime(true);
-}
-
-// Функция для получения текущего времени в формате ЧЧ:ММ:СС
-function getCurrentTime()
-{
-  return date('i:s', 0);
-}
-
-// Если в сессии есть сохраненное время, используем его, иначе начинаем отсчет с текущего времени
-$startTime = isset($_SESSION['startTime']) ? $_SESSION['startTime'] : time();
-
-// Обновляем сохраненное время в сессии
-$_SESSION['startTime'] = $startTime;
-
-
 ?>
 
 
@@ -50,50 +29,50 @@ $_SESSION['startTime'] = $startTime;
           отображает количество правильно отвеченных вопросов. Для получения результатов вам необходимо завершить весь
           тест, не закрывая браузер или вкладку с тестом.</h3>
       <?php } else { ?>
-        <h2 class="text-5xl mb-6">Тест: </h2>
-        <h3 class="text-2xl mb-5">Вопрос
+        <h2 class="text-5xl 2xl:mb-6 xl:mb-3">Тест: </h2>
+        <h3 class="text-2xl 2xl:mb-5 xl:mb-3">Вопрос
           <?= $questionNum ?> из
           <?= count($test) ?>
         </h3>
-        <p class="text-xl mb-10">
+        <p class="text-xl 2xl:mb-10 xl:mb-5">
           <?= $test[$questionNum]['question'] ?>
         </p>
 
-        <form class="mb-10 space-y-1" action="tests.php" method="post">
+        <form class="2xl:mb-10 xl:mb-5 space-y-1" action="tests.php" method="post">
           <label
-            class="block relative hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 text-xl p-4 pl-10 select-none"
+            class="block relative hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 2xl:text-xl xl:text-lg 2xl:p-4 xl:p-3 2xl:pl-10 xl:pl-12 select-none"
             for="<?= $test[$questionNum][1] ?>">
             <?= $test[$questionNum][1] ?>
             <input class="hidden peer" type="radio" id="<?= $test[$questionNum][1] ?>" name="answer" value="1" />
             <span
-              class="block w-5 h-5 absolute left-3 top-[23px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
+              class="block w-5 h-5 absolute left-3 top-1/2 -mt-[10px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
           </label>
 
           <label
-            class="block relative hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 text-xl p-4 pl-10 select-none"
+            class="block relative hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 2xl:text-xl xl:text-lg 2xl:p-4 xl:p-3 2xl:pl-10 xl:pl-12 select-none"
             for="<?= $test[$questionNum][2] ?>">
             <?= $test[$questionNum][2] ?>
             <input class="hidden peer" type="radio" id="<?= $test[$questionNum][2] ?>" name="answer" value="2" />
             <span
-              class="block w-5 h-5 absolute left-3 top-[23px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
+              class="block w-5 h-5 absolute left-3 top-1/2 -mt-[10px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
           </label>
 
           <label
-            class="block relative hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 text-xl p-4 pl-10 select-none"
+            class="block relative hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 2xl:text-xl xl:text-lg 2xl:p-4 xl:p-3 2xl:pl-10 xl:pl-12 select-none"
             for="<?= $test[$questionNum][3] ?>">
             <?= $test[$questionNum][3] ?>
             <input class="hidden peer" type="radio" id="<?= $test[$questionNum][3] ?>" name="answer" value="3" />
             <span
-              class="block w-5 h-5 absolute left-3 top-[23px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
+              class="block w-5 h-5 absolute left-3 top-1/2 -mt-[10px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
           </label>
 
           <label
-            class="block relative hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 text-xl p-4 pl-10 select-none"
+            class="block relative hover:bg-gray-300 dark:hover:bg-gray-600 bg-gray-200 dark:bg-gray-700 2xl:text-xl xl:text-lg 2xl:p-4 xl:p-3 2xl:pl-10 xl:pl-12 select-none"
             for="<?= $test[$questionNum][4] ?>">
             <?= $test[$questionNum][4] ?>
             <input class="hidden peer" type="radio" id="<?= $test[$questionNum][4] ?>" name="answer" value="4" />
             <span
-              class="block w-5 h-5 absolute left-3 top-[23px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
+              class="block w-5 h-5 absolute left-3 top-1/2 -mt-[10px] rounded-full bg-white peer-checked:border-[6px] peer-checked:border-red-600"></span>
           </label>
         </form>
 
@@ -114,7 +93,9 @@ $_SESSION['startTime'] = $startTime;
   </div>
   <script src="https://kit.fontawesome.com/89e7650dfb.js" crossorigin="anonymous"></script>
   <script src="../js/script.js"></script>
+  <script src="../js/progressBar.js"></script>
   <script src="../js/tests.js"></script>
+
 </body>
 
 </html>

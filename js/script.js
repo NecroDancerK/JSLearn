@@ -6,6 +6,8 @@ const goBackBtn = document.getElementById('goBack');
 
 if (goBackBtn) goBackBtn.addEventListener('click', goBack);
 
+
+
 // Автоматическое выставление активной вкладки сайдбара
 const sidebar = document.getElementById("sidebar-content");
 const sidebarItems = sidebar.getElementsByTagName("a");

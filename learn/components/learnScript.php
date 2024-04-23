@@ -4,20 +4,20 @@ require_once "../php/helpers.php";
 $pdo = getPDO();
 $userId = currentUser()["id"];
 
-$stmt = $pdo->prepare("SELECT studied_topics FROM learn_progress WHERE user_id = :user_id");
-$stmt->bindParam(':user_id', $userId);
+$stmt1 = $pdo->prepare("SELECT studied_topics FROM learn_progress WHERE user_id = :user_id");
+$stmt1->bindParam(':user_id', $userId);
 
-$stmt->execute();
-$row = $stmt->fetch();
+$stmt1->execute();
+$row = $stmt1->fetch();
 
 if (!$row) {
   $data = [];
   $json_data = json_encode($data);
 
-  $sql = "INSERT INTO learn_progress (user_id, studied_topics) VALUES (:user_id, :studied_topics);";
+  $sql1 = "INSERT INTO learn_progress (user_id, studied_topics) VALUES (:user_id, :studied_topics);";
 
   // Подготавливаем выражение
-  $statement = $pdo->prepare($sql);
+  $statement = $pdo->prepare($sql1);
 
   // Передаем значения переменных и выполняем запрос
   try {

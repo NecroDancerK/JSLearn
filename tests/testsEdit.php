@@ -35,32 +35,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($newTheme)) {
 
       // Проверяем, существует ли уже такая тема в базе данных
-      $stmt = $pdo->prepare("SELECT * FROM tests_themes WHERE name = :newTheme");
-      $stmt->execute(array(':newTheme' => $newTheme));
-      $existingTheme = $stmt->fetch(PDO::FETCH_ASSOC);
+      $stmt1 = $pdo->prepare("SELECT * FROM tests_themes WHERE name = :newTheme");
+      $stmt1->execute(array(':newTheme' => $newTheme));
+      $existingTheme = $stmt1->fetch(PDO::FETCH_ASSOC);
 
       // Если тема уже существует, выводим сообщение об ошибке
       if ($existingTheme) {
         echo "Ошибка: Тема \"$newTheme\" уже существует.";
       } else {
         // Вставляем новую тему в базу данных
-        $stmt = $pdo->prepare("INSERT INTO tests_themes (name) VALUES (:newTheme)");
-        $stmt->execute(array(':newTheme' => $newTheme));
+        $stmt1 = $pdo->prepare("INSERT INTO tests_themes (name) VALUES (:newTheme)");
+        $stmt1->execute(array(':newTheme' => $newTheme));
       }
 
-      $stmt = $pdo->prepare("SELECT id FROM tests_themes WHERE name = :newTheme");
-      $stmt->execute(array(':newTheme' => $newTheme));
-      $testThemeArray = $stmt->fetch(PDO::FETCH_ASSOC);
+      $stmt1 = $pdo->prepare("SELECT id FROM tests_themes WHERE name = :newTheme");
+      $stmt1->execute(array(':newTheme' => $newTheme));
+      $testThemeArray = $stmt1->fetch(PDO::FETCH_ASSOC);
       $testTheme = $testThemeArray["id"];
 
-      $sql = "UPDATE tests SET title = :title, test_theme_id = :test_theme_id, questions = :questions WHERE id = :testId;";
+      $sql1 = "UPDATE tests SET title = :title, test_theme_id = :test_theme_id, questions = :questions WHERE id = :testId;";
 
       // Подготавливаем выражение
-      $stmt = $pdo->prepare($sql);
+      $stmt1 = $pdo->prepare($sql1);
 
       // Передаем значения переменных и выполняем запрос
       try {
-        $stmt->execute(
+        $stmt1->execute(
           array(
             ':title' => $testName,
             ':test_theme_id' => $testTheme,
@@ -77,14 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       header("Location: testsEdit.php?test=$testId");
     } else {
 
-      $sql = "UPDATE tests SET title = :title, test_theme_id = :test_theme_id, questions = :questions WHERE id = :testId;";
+      $sql1 = "UPDATE tests SET title = :title, test_theme_id = :test_theme_id, questions = :questions WHERE id = :testId;";
 
       // Подготавливаем выражение
-      $stmt = $pdo->prepare($sql);
+      $stmt1 = $pdo->prepare($sql1);
 
       // Передаем значения переменных и выполняем запрос
       try {
-        $stmt->execute(
+        $stmt1->execute(
           array(
             ':title' => $testName,
             ':test_theme_id' => $testTheme,
@@ -106,18 +106,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 try {
 
   // Подготавливаем запрос с параметром
-  $stmt = $pdo->prepare("SELECT * FROM tests WHERE id = :testId");
+  $stmt1 = $pdo->prepare("SELECT * FROM tests WHERE id = :testId");
   // Привязываем параметр к значению
-  $stmt->bindParam(':testId', $testId, PDO::PARAM_INT);
+  $stmt1->bindParam(':testId', $testId, PDO::PARAM_INT);
 
   // Выполняем запрос
-  $stmt->execute();
+  $stmt1->execute();
 
   // Устанавливаем режим выборки результата в ассоциативный массив
-  $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  $stmt1->setFetchMode(PDO::FETCH_ASSOC);
 
 
-  while ($row = $stmt->fetch()) {
+  while ($row = $stmt1->fetch()) {
     $test = $row;
   }
 

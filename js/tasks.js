@@ -65,7 +65,7 @@ function checkAnswer() {
   for (let index = 0; index < answersArray.length; index++) {
     const input = arrayInputs[index];
 
-    // Если ответ правильный, то добавляем true, если неправильный то false, логично ебать
+    // Если ответ правильный, то добавляем true, если неправильный то false
     // Я максимально сократил этот момент, раньше тут был тернарный оператор, мог быть if else, но теперь тут просто проверка внутри скобок, которая как раз таки возвращается необходимые мне булевые значения, до этого тут был два раза resultsArray.push(true и false) и проверка перед ними)
     resultsArray.push(input.value.trim() == answersArray[index]);
   }
@@ -103,7 +103,7 @@ function checkAnswer() {
 
     const currentTask = sidebar.querySelector(`a[href="${currentURL}"]`)
 
-    currentTask.innerHTML = "<i class=\"fa-solid fa-check absolute left-1 bottom-3\"></i>" + currentTask.innerHTML;
+    currentTask.innerHTML = "<i class=\"fa-solid fa-check absolute left-1 top-1/2 -mt-2\"></i>" + currentTask.innerHTML;
 
     const checkItems = document.querySelectorAll('.fa-check');
 
@@ -112,7 +112,7 @@ function checkAnswer() {
     setProgressFromFront(Math.ceil((checkItems.length / sidebarItems.length) * 100));
 
   } else {
-    // Если ответ неправильный, то мы переключаем (кто мы блять? Я один здесь нахуй) классы панели с заданием и панели неправильного ответа 
+    // Если ответ неправильный, то мы переключаем классы панели с заданием и панели неправильного ответа 
     exercisePanel.classList.toggle("hidden");
     resultPanelIncorrect.classList.toggle("hidden");
     if (checkButton.innerText === "Подтвердить ответ") {

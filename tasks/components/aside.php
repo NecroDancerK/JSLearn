@@ -20,11 +20,11 @@ $isAdmin = currentUser()["is_admin"];
 
 $userId = currentUser()["id"];
 
-$stmt = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
-$stmt->bindParam(':user_id', $userId);
+$stmt1 = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
+$stmt1->bindParam(':user_id', $userId);
 
-$stmt->execute();
-$row = $stmt->fetch();
+$stmt1->execute();
+$row = $stmt1->fetch();
 
 $data = json_decode($row['done_tasks'], true);
 

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JSLearn</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/progressBar.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.webp">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.webp">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.webp">
@@ -15,9 +16,8 @@
 
 <!-- <body class=""> -->
 
-<body <?php if (isset ($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?>
-    class="dark " <?php } ?>>
-  <div class="wrapper  2xl:h-screen xl:h-auto dark:bg-gray-900 text-white">
+<body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark " <?php } ?>>
+  <div class="wrapper  h-screen dark:bg-gray-900 text-white">
     <?php
 
     require_once "components/header.php";
@@ -32,7 +32,7 @@
       <a href="learn/learn1.php"
         class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Учебник</a>
       <a href="tasks/tasks.php?task=<?php
-      if (!empty ($results)) {
+      if (!empty($results)) {
         echo $results[0][0];
       }
       ?>" class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Упражнения</a>
@@ -40,21 +40,21 @@
         class="bg-gray-800 w-1/4 hover:bg-black p-2 uppercase text-lg text-white font-semibold">Тесты</a>
       <a href="playground.php" class=" w-1/4 bg-red-600 p-2 uppercase text-lg text-white font-semibold">Playground</a>
     </div>
-    <main class="pt-[110px]">
+    <main class="2xl:pt-[110px] xl:pt-[100px]">
 
       <div class="container mx-auto w-full h-[85vh] p-5 flex flex-col md:flex-row">
         <div class="left basis-1/2 p-[10px]">
 
           <label class="flex items-center bg-black h-[30px]"><i class="fa-brands fa-html5 mx-3"></i> HTML</label>
           <textarea
-            class="w-full h-[28%] bg-neutral-800 text-white py-[10px] px-[20px] border-0 outline-0 resize-none text-lg mb-3"
+            class="w-full h-[28%] bg-neutral-800 text-white py-[10px] px-[20px] border-0 outline-0 resize-none text-lg 2xl:mb-3 xl:mb-0"
             id="html-code" onkeyup="run()">
 <button onclick= "changeColor(this)">НАЖМИ НА МЕНЯ</button>
       </textarea>
 
           <label class="flex items-center bg-black h-[30px]"><i class="fa-brands fa-css3-alt mx-3"></i> CSS</label>
           <textarea
-            class="w-full h-[28%] bg-neutral-800 text-white py-[10px] px-[20px] border-0 outline-0 resize-none text-lg mb-3"
+            class="w-full h-[28%] bg-neutral-800 text-white py-[10px] px-[20px] border-0 outline-0 resize-none text-lg 2xl:mb-3 xl:mb-0"
             id="css-code" onkeyup="run()">
 button {
   padding: 20px;
@@ -72,7 +72,7 @@ button {
 
           <label class="flex items-center bg-black h-[30px]"><i class="fa-brands fa-js mx-3"></i> JS</label>
           <textarea
-            class="w-full h-[28%] bg-neutral-800 text-white py-[10px] px-[20px] border-0 outline-0 resize-none text-lg mb-3"
+            class="w-full h-[28%] bg-neutral-800 text-white py-[10px] px-[20px] border-0 outline-0 resize-none text-lg 2xl:mb-3 xl:mb-0"
             id="js-code" onkeyup="run()">
 function changeColor(x) {
   x.classList.toggle("toggleStyle");
@@ -88,6 +88,11 @@ function changeColor(x) {
     </main>
     <footer></footer>
   </div>
+
+  <script src="https://kit.fontawesome.com/89e7650dfb.js" crossorigin="anonymous"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/progressBar.js"></script>
+  <script src="../js/tasks.js"></script>
   <script>
 
     function run() {
@@ -106,12 +111,8 @@ function changeColor(x) {
       run();
     });
 
-
+    setProgressFromBack(100);
   </script>
-  <script src="https://kit.fontawesome.com/89e7650dfb.js" crossorigin="anonymous"></script>
-  <script src="../js/script.js"></script>
-  <script src="../js/progressBar.js"></script>
-  <script src="../js/tasks.js"></script>
 </body>
 
 </html>

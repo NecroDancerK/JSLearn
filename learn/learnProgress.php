@@ -10,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userId = currentUser()["id"];
     $taskId = $_POST['learnId'];
 
-    $stmt = $pdo->prepare("SELECT studied_topics FROM learn_progress WHERE user_id = :user_id");
-    $stmt->bindParam(':user_id', $userId);
+    $stmt1 = $pdo->prepare("SELECT studied_topics FROM learn_progress WHERE user_id = :user_id");
+    $stmt1->bindParam(':user_id', $userId);
 
-    $stmt->execute();
-    $row = $stmt->fetch();
+    $stmt1->execute();
+    $row = $stmt1->fetch();
 
     if ($row) {
       // Распарсим JSON строку в массив PHP
@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
       // SQL запрос для обновления JSON данных
       $update_sql = "UPDATE learn_progress SET studied_topics = :studied_topics WHERE user_id = :user_id";
-      $stmt = $pdo->prepare($update_sql);
-      $stmt->bindParam(':studied_topics', $updated_json_data);
-      $stmt->bindParam(':user_id', $userId);
-      $stmt->execute();
+      $stmt1 = $pdo->prepare($update_sql);
+      $stmt1->bindParam(':studied_topics', $updated_json_data);
+      $stmt1->bindParam(':user_id', $userId);
+      $stmt1->execute();
 
     } else {
       // JSON данные для вставки
@@ -39,14 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       ];
       $json_data = json_encode($data);
 
-      $sql = "INSERT INTO learn_progress (user_id, studied_topics) VALUES (:user_id, :studied_topics);";
+      $sql1 = "INSERT INTO learn_progress (user_id, studied_topics) VALUES (:user_id, :studied_topics);";
 
       // Подготавливаем выражение
-      $stmt = $pdo->prepare($sql);
+      $stmt1 = $pdo->prepare($sql1);
 
       // Передаем значения переменных и выполняем запрос
       try {
-        $stmt->execute(
+        $stmt1->execute(
           array(
             ':user_id' => $userId,
             ':studied_topics' => $json_data,
@@ -65,11 +65,11 @@ $pdo = getPDO();
 
 $userId = $user["id"];
 
-$stmt = $pdo->prepare("SELECT studied_topics FROM learn_progress WHERE user_id = :user_id");
-$stmt->bindParam(':user_id', $userId);
+$stmt1 = $pdo->prepare("SELECT studied_topics FROM learn_progress WHERE user_id = :user_id");
+$stmt1->bindParam(':user_id', $userId);
 
-$stmt->execute();
-$row = $stmt->fetch();
+$stmt1->execute();
+$row = $stmt1->fetch();
 
 $data = json_decode($row['studied_topics'], true);
 

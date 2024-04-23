@@ -18,19 +18,19 @@ if ($isAdmin == 1) { ?>
       $taskId = $_POST['taskId'];
 
       // Удаление упражнения из базы данных
-      $stmt = $pdo->prepare('DELETE FROM tasks WHERE id = ?');
-      $stmt->execute([$taskId]);
+      $stmt1 = $pdo->prepare('DELETE FROM tasks WHERE id = ?');
+      $stmt1->execute([$taskId]);
 
       $query = "SELECT id FROM `tasks`;";
       $statement = $pdo->query($query);
 
       $results = $statement->fetchAll(PDO::FETCH_NUM);
 
-      $stmt = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
-      $stmt->bindParam(':user_id', $userId);
+      $stmt1 = $pdo->prepare("SELECT done_tasks FROM tasks_progress WHERE user_id = :user_id");
+      $stmt1->bindParam(':user_id', $userId);
 
-      $stmt->execute();
-      $row = $stmt->fetch();
+      $stmt1->execute();
+      $row = $stmt1->fetch();
 
       // var_dump($row["done_tasks"]);
 

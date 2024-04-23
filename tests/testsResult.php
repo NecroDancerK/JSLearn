@@ -26,9 +26,10 @@ include_once "testsScript.php";
       <h2 class="text-5xl mb-10">Ваш результат</h2>
       <h3 class="text-4xl mb-7" id="result"></h3>
       <p class="text-4xl mb-10 font-bold" id="result-percent"></p>
-      <a class="bg-red-600 p-3 rounded text-white font-bold"
-        href="tests.php?test=<?= $testId ?>&question=1" id="button-next"
-        >Попробовать снова</a>
+      <a class="bg-green-600 hover:bg-green-700 p-3 rounded text-white font-bold"
+        href="tests.php?test=<?= $testId ?>&question=1" id="button-next">Попробовать снова</a>
+      <a class="bg-red-600 hover:bg-red-700 p-3 rounded text-white font-bold"
+        href="testsShowRightAnswers.php?test=<?= $testId ?>" id="button-next">Проверить ответы</a>
     </main>
     <footer></footer>
   </div>
@@ -36,6 +37,7 @@ include_once "testsScript.php";
   <script src="../js/script.js"></script>
   <script src="../js/tests.js"></script>
   <script src="../js/testsResult.js"></script>
+  <script src="../js/progressBar.js"></script>
 </body>
 
 </html>
