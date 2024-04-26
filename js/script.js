@@ -1,10 +1,10 @@
-function goBack() {
-  window.history.back();
-}
+// function goBack() {
+//   window.history.back();
+// }
 
-const goBackBtn = document.getElementById('goBack');
+// const goBackBtn = document.getElementById('goBack');
 
-if (goBackBtn) goBackBtn.addEventListener('click', goBack);
+// if (goBackBtn) goBackBtn.addEventListener('click', goBack);
 
 
 
