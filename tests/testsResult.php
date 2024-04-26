@@ -37,6 +37,7 @@ include_once "testsScript.php";
   <script src="../js/script.js"></script>
   <script src="../js/tests.js"></script>
   <script src="../js/testsResult.js"></script>
+  <script src="../js/testsShowRightAnswers.js"></script>
   <script src="../js/progressBar.js"></script>
 </body>
 

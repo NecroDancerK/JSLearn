@@ -10,7 +10,6 @@ include_once "testsScript.php";
 
 <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?>
     class="dark bg-white dark:bg-gray-900" <?php } ?>>
-
   <div class="wrapper h-screen dark:bg-gray-900">
     <?php
 
@@ -31,7 +30,7 @@ include_once "testsScript.php";
       <?php } else { ?>
         <h2 class="text-5xl 2xl:mb-6 xl:mb-3">Тест: </h2>
         <h3 class="text-2xl 2xl:mb-5 xl:mb-3">Вопрос
-          <?= $questionNum ?> из
+          <span id="questionNum"><?= $questionNum ?></span> из
           <?= count($test) ?>
         </h3>
         <p class="text-xl 2xl:mb-10 xl:mb-5">

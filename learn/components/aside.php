@@ -1,7 +1,7 @@
 <aside
-  class="siderbar fixed top-0 left-0 h-full mt-[110px] bg-gray-100 dark:bg-slate-800 dark:text-white 2xl:w-[330px] w-[260px] flex flex-col">
+  class="siderbar fixed top-[110px] left-0 h-full bg-gray-100 dark:bg-slate-800 dark:text-white 2xl:w-[330px] w-[260px] flex flex-col">
   <div class="scrollbox overflow-auto">
-    <div class="scrollbox-inner pb-2" id="sidebar-content">
+    <div class="scrollbox-inner pb-[110px]" id="sidebar-content">
       <h3 class="text-xl font-bold mb-2 pl-2 mt-4 dark:text-white">Глава 1. Введение в JavaScript</h3>
       <a class="block pl-2 py-2  font-semibold hover:bg-neutral-500 hover:text-white" href="learn1.php">
         Что такое JavaScript

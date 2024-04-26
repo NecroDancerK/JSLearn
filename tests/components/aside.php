@@ -4,7 +4,7 @@ require_once "../php/helpers.php";
 
 $pdo = getPDO();
 
-$pageId = $_GET['test'];
+$pageId = isset($_GET['test']) ? $_GET['test'] : null;
 
 $query1 = "SELECT tests.id, tests.title, tests.test_theme_id, tests_themes.name FROM `tests` JOIN tests_themes ON tests.test_theme_id = tests_themes.id ORDER BY `tests`.`test_theme_id`, `tests`.`title` ASC;";
 $statement1 = $pdo->query($query1);
@@ -57,7 +57,7 @@ $index = array_search($pageId, $arrayId);
 
         echo "<a onclick=\"startNewTest()\" class=\"group aside-link flex pl-6 py-2 relative gap-1 font-semibold hover:bg-neutral-500 hover:text-white\" href=\"tests.php?test={$testItem["id"]}&question=1\">";
         foreach ($data as $key => $doneTask) {
-          if ($testItem["id"] == $key) { ?>
+          if ($testItem["id"] == $key) { ?> 
             <i class="fa-solid fa-check absolute left-1 top-1/2 -mt-2"></i>
           <?php }
         }

@@ -5,8 +5,7 @@
 
 
 <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?>
- 
-      class="dark bg-white dark:bg-gray-900" <?php } ?>>
+    class="dark bg-white dark:bg-gray-900" <?php } ?>>
   <div class="wrapper dark:bg-gray-900">
     <?php
 
@@ -28,7 +27,7 @@
     <?php require_once "components/aside.php" ?>
     <main
       class="pt-36 pb-10 mx-auto w-3/5 border border-b-0 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
-      <h3 class="text-3xl font-bold mb-6">Подключение внешнего файла JavaScript</h3>
+      <h3 class="text-3xl font-bold mb-6">Типы данных</h3>
 
       <div class="buttons flex justify-between my-4 text-white font-bold text-lg">
         <a class="bg-red-600 p-3 rounded" href="learn.php" id="btn-prev">Назад</a>

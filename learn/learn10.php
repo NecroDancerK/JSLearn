@@ -4,8 +4,7 @@
 <?php include_once __DIR__ . '/components/mainHead.php' ?>
 
 
-<body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?>
-    class="dark bg-white dark:bg-gray-900" <?php } ?>>
+<body <?php if (isset ($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?> class="dark bg-white dark:bg-gray-900" <?php } ?>>
   <div class="wrapper dark:bg-gray-900">
     <?php
 
@@ -27,8 +26,7 @@
     <?php require_once "components/aside.php" ?>
     <main
       class="pt-36 pb-10 mx-auto w-3/5 border border-b-0 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
-      <h2 class="text-4xl font-bold mb-4">Функциональное программирование</h2>
-      <h3 class="text-3xl font-bold mb-6">Функции</h3>
+      <h3 class="text-3xl font-bold mb-6">Условные выражения</h3>
 
       <div class="buttons flex justify-between my-4 text-white font-bold text-lg">
         <a class="bg-red-600 p-3 rounded" href="learn.php" id="btn-prev">Назад</a>
@@ -58,11 +56,11 @@
           папке создадим файл под названием index.html. То есть данный файл будет представлять веб-страницу с кодом
           HTML.
         </p>
-        <img class="mb-7" src="../img/lessons/2/1.12.webp" alt="">
+        <img class="mb-7" src="../img/lessons/1.12.webp" alt="">
         <p class="mb-7">
           Откроем этот файл в текстовом редакторе и определим в файле следующий код:
         </p>
-        <div id="highlighter_746735" class="syntaxhighlighter js border pl-6">
+        <div id="highlighter_746735" class="syntaxhighlighter js border pl-6 mb-7">
           <!-- <div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div> -->
           <table border="0" cellpadding="0" cellspacing="0">
             <tbody>
@@ -129,7 +127,7 @@
           инструкций javascript, но и для других целей.Так, даже сейчас вы можете встретить на некоторых веб - страницах
           такое определение элемента script:
         </p>
-        <div id="highlighter_810095" class="syntaxhighlighter  xml border pl-6">
+        <div id="highlighter_810095" class="syntaxhighlighter  xml border pl-6 mb-7">
           <table border="0" cellpadding="0" cellspacing="0">
             <tbody>
               <tr>
@@ -156,7 +154,7 @@
         <p class="mb-7">
           Используемый нами код javascript содержит одно выражение:
         </p>
-        <div id="highlighter_858382" class="syntaxhighlighter  js border pl-6">
+        <div id="highlighter_858382" class="syntaxhighlighter  js border pl-6 mb-7">
           <table border="0" cellpadding="0" cellspacing="0">
             <tbody>
               <tr>
@@ -183,11 +181,11 @@
         <p class="mb-7">
           Вид файла в текстовом редакторе Visual Studio Code:
         </p>
-        <img class="mb-7" src="../img/lessons/2/1.2.webp" alt="">
+        <img class="mb-7" src="../img/lessons/1.2.webp" alt="">
         <p class="mb-7">
           Теперь, когда веб-страница готова, откроем ее в веб-браузере:
         </p>
-        <img class="mb-7" src="../img/lessons/2/1.1.webp" alt="">
+        <img class="mb-7" src="../img/lessons/1.1.webp" alt="">
         <p class="mb-7">
           И веб-браузер отобразит заголовок, который мы передали в метод document.write() в коде javascript.
         </p>
@@ -205,6 +203,7 @@
           <svg class="progress-circle absolute -bottom-[11px] -right-[10px]" width="60" height="60">
             <circle class="progress" cx="30" cy="30" r="20" stroke-width="4" fill="transparent" />
           </svg>
+
         </div>
         <a class="bg-red-600 p-3 rounded" href="learn2.php" id="btn-next">Вперед</a>
       </div>

@@ -1,5 +1,6 @@
 let rightAnswer;
 let testLength;
+// const questionNum = document.getElementById('questionNum').textContent;
 
 
 // Получаем параметры из URL
@@ -9,6 +10,7 @@ const urlParams = new URLSearchParams(queryString);
 // Получаем значение определённого параметра
 const test = urlParams.get('test');
 const question = urlParams.get('question');
+
 
 // Создаём объект с параметрами
 const params = new URLSearchParams();
@@ -33,6 +35,7 @@ fetch('testsGetRightAnswer.php', {
     // Обрабатываем полученные данные
     rightAnswer = data[0];
     testLength = data[1];
+
   })
   .catch(error => {
     // Обрабатываем ошибку
@@ -42,14 +45,20 @@ fetch('testsGetRightAnswer.php', {
 function startNewTest() {
   // Очистить переменную currentScore в localStorage
   question == 1 ? currentScore = 0 : currentScore = localStorage.getItem('currentScore');
+  question == 1 ? answers = [] : answers = JSON.parse(localStorage.getItem('answers'));
 }
+
+
 
 function checkAnswer() {
   let radios = document.getElementsByName("answer");
   let currentScore;
+  let answers = [];
   question == 1 ? currentScore = 0 : currentScore = localStorage.getItem('currentScore');
+  question == 1 ? answers = [] : answers = JSON.parse(localStorage.getItem('answers'));
 
   let selectedRadio;
+
   for (let i = 0; i < radios.length; i++) {
     if (radios[i].checked) {
       selectedRadio = radios[i].value;
@@ -57,11 +66,19 @@ function checkAnswer() {
     }
   }
 
+
   if (selectedRadio == rightAnswer) {
     currentScore++;
   }
+
+  answers.push(selectedRadio);
+
+  console.log(testLength);
+  console.log(questionNum);
+
   localStorage.setItem('currentScore', currentScore);
+  localStorage.setItem('answers', JSON.stringify(answers));
   localStorage.setItem('testLength', testLength);
 }
 
-
+console.log(localStorage.getItem('answers'));

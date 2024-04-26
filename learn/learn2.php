@@ -56,11 +56,11 @@
           папке создадим файл под названием index.html. То есть данный файл будет представлять веб-страницу с кодом
           HTML.
         </p>
-        <img class="mb-7" src="../img/lessons/2/1.12.webp" alt="">
+        <img class="mb-7" src="../img/lessons/1.12.webp" alt="">
         <p class="mb-7">
           Откроем этот файл в текстовом редакторе и определим в файле следующий код:
         </p>
-        <div id="highlighter_746735" class="syntaxhighlighter js border pl-6">
+        <div id="highlighter_746735" class="syntaxhighlighter js border pl-6 mb-7">
           <!-- <div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div> -->
           <table border="0" cellpadding="0" cellspacing="0">
             <tbody>
@@ -127,7 +127,7 @@
           инструкций javascript, но и для других целей.Так, даже сейчас вы можете встретить на некоторых веб - страницах
           такое определение элемента script:
         </p>
-        <div id="highlighter_810095" class="syntaxhighlighter  xml border pl-6">
+        <div id="highlighter_810095" class="syntaxhighlighter  xml border pl-6 mb-7">
           <table border="0" cellpadding="0" cellspacing="0">
             <tbody>
               <tr>
@@ -154,7 +154,7 @@
         <p class="mb-7">
           Используемый нами код javascript содержит одно выражение:
         </p>
-        <div id="highlighter_858382" class="syntaxhighlighter  js border pl-6">
+        <div id="highlighter_858382" class="syntaxhighlighter  js border pl-6 mb-7">
           <table border="0" cellpadding="0" cellspacing="0">
             <tbody>
               <tr>
@@ -181,11 +181,11 @@
         <p class="mb-7">
           Вид файла в текстовом редакторе Visual Studio Code:
         </p>
-        <img class="mb-7" src="../img/lessons/2/1.2.webp" alt="">
+        <img class="mb-7" src="../img/lessons/1.2.webp" alt="">
         <p class="mb-7">
           Теперь, когда веб-страница готова, откроем ее в веб-браузере:
         </p>
-        <img class="mb-7" src="../img/lessons/2/1.1.webp" alt="">
+        <img class="mb-7" src="../img/lessons/1.1.webp" alt="">
         <p class="mb-7">
           И веб-браузер отобразит заголовок, который мы передали в метод document.write() в коде javascript.
         </p>

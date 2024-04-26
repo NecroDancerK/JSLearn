@@ -4,10 +4,6 @@ result.textContent = localStorage.getItem('currentScore') + " Из " + localStor
 const resultPercent = document.getElementById('result-percent');
 resultPercent.textContent = Math.round(localStorage.getItem('currentScore') / localStorage.getItem('testLength') * 100) + "%";
 
-
-
-
-
 const results = new URLSearchParams();
 results.append('testId', test);
 results.append('result', localStorage.getItem('currentScore'));
@@ -35,6 +31,11 @@ fetch('testsProgress.php', {
     // Обрабатываем ошибку
     console.error('There was a problem with the fetch operation:', error);
   });
+
+
+
+
+
 
 const originalString = currentURL + '&question=1';
 let substringToRemove = "Result";

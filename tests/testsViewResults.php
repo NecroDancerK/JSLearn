@@ -64,17 +64,17 @@ try {
     ?>
     <?php require_once "components/headerNav.php" ?>
     <?php require_once "components/aside.php"; ?>
-    <main class="pt-28 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
+    <main class="pt-44 pb-10 mx-auto w-3/5 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
       <h2 class="text-5xl mb-10">Результаты тестов:</h2>
       <?php
-      foreach ($tests as $key => $value) {
-        if (isset($testsResults[$value['id']])) { ?>
+      foreach ($tests as $key => $question) {
+        if (isset($testsResults[$question['id']])) { ?>
           <div class="flex justify-between mb-4">
-            <p class="text-2xl"><?= $value['title'] ?></p>
+            <p class="text-2xl"><?= $question['title'] ?></p>
             <p class="text-xl">
-              <?= $testsResults[$value['id']] ?>
+              <?= $testsResults[$question['id']] ?>
               из
-              <?= count((array) json_decode($value['questions'])) ?>
+              <?= count((array) json_decode($question['questions'])) ?>
             </p>
           </div>
         <?php }

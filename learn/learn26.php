@@ -21,14 +21,12 @@
     $results = $statement->fetchAll(PDO::FETCH_NUM);
     ?>
 
-
     <?php require_once "components/headerNav.php" ?>
 
     <?php require_once "components/aside.php" ?>
     <main
       class="pt-36 pb-10 mx-auto w-3/5 border border-b-0 dark:border-gray-950 px-7 dark:bg-gray-900 dark:text-white">
-      <h2 class="text-4xl font-bold mb-4">Функциональное программирование</h2>
-      <h3 class="text-3xl font-bold mb-6">Функции</h3>
+      <h3 class="text-3xl font-bold mb-6">Передача параметров по значению и по ссылке</h3>
 
       <div class="buttons flex justify-between my-4 text-white font-bold text-lg">
         <a class="bg-red-600 p-3 rounded" href="learn.php" id="btn-prev">Назад</a>
@@ -201,10 +199,10 @@
           <a class="relative z-10" href="../profile.php">
             <img src="../img/avatar(1).webp" alt="">
           </a>
-
           <svg class="progress-circle absolute -bottom-[11px] -right-[10px]" width="60" height="60">
             <circle class="progress" cx="30" cy="30" r="20" stroke-width="4" fill="transparent" />
           </svg>
+
         </div>
         <a class="bg-red-600 p-3 rounded" href="learn2.php" id="btn-next">Вперед</a>
       </div>
