@@ -116,13 +116,13 @@ function currentUser()
 function logout()
 {
   unset($_SESSION['user']['id']);
-  redirect('/');
+  redirect('/learn/learn1.php');
 }
 
 function checkAuth()
 {
   if (!isset($_SESSION['user']['id'])) {
-    redirect('/');
+    redirect('/login.php');
   }
 }
 

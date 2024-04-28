@@ -21,6 +21,7 @@ body {
   background: #141e26;
   border-radius: 0.25rem;
   padding: 40px;
+  position: relative;
 }
 
 form {

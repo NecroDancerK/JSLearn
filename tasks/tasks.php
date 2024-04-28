@@ -2,7 +2,11 @@
 <html lang="en">
 
 <?php
+    require_once "../php/helpers.php";
+
 include_once "components/mainHead.php";
+checkAuth();
+
 include_once "components/taskScript.php";
 
 
@@ -14,7 +18,6 @@ include_once "components/taskScript.php";
     <?php
 
     require_once "components/header.php";
-    require_once "../php/helpers.php";
 
     $results = getTasksIdsFromDB();
     ?>

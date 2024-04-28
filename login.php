@@ -12,7 +12,9 @@ checkGuest();
 
   <form class="card" action="php/actions/login.php" method="post">
     <h2>Вход</h2>
-
+    <a href="learn/learn1.php" style="position: absolute; top: 40px; right: 40px; color: inherit;">
+      <i class="fa-solid fa-x fa-2xl"></i>
+    </a>
     <?php if (hasMessage('error')): ?>
       <div class="notice error">
         <?php echo getMessage('error') ?>
@@ -40,6 +42,7 @@ checkGuest();
 
   <p>У меня еще нет <a class="acc_link" href="/register.php">аккаунта</a></p>
 
+  <script src="https://kit.fontawesome.com/89e7650dfb.js" crossorigin="anonymous"></script>
   <?php include_once __DIR__ . '/components/scripts.php' ?>
 </body>
 

@@ -3,8 +3,9 @@
 require_once "../php/helpers.php";
 require_once "components/learnScript.php";
 
-setJSONProgressForUsersTasks();
-setJSONProgressForUsersTests()
+!empty($userId) ? setJSONProgressForUsersTasks() : "";
+!empty($userId) ? setJSONProgressForUsersTests() : "";
+
 
 ?>
 
@@ -21,12 +22,8 @@ setJSONProgressForUsersTests()
     require_once "components/header.php";
     require_once "../php/helpers.php";
 
-    $pdo = getPDO();
 
-    $query = "SELECT id FROM `tasks`;";
-    $statement = $pdo->query($query);
-
-    $results = $statement->fetchAll(PDO::FETCH_NUM);
+    $results = getTasksIdsFromDB();
     ?>
     <?php require_once "components/headerNav.php" ?>
     <?php require_once "components/aside.php" ?>

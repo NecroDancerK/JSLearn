@@ -3,9 +3,6 @@
 require_once "../php/helpers.php";
 require_once "components/learnScript.php";
 
-setJSONProgressForUsersTasks();
-setJSONProgressForUsersTests()
-
   ?>
 
 <!DOCTYPE html>

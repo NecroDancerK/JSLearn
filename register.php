@@ -12,7 +12,9 @@ checkGuest();
 
 <form class="card" action="php/actions/register.php" method="post" enctype="multipart/form-data">
     <h2 class="register">Регистрация</h2>
-
+    <a href="learn/learn1.php" style="position: absolute; top: 40px; right: 40px; color: inherit;">
+      <i class="fa-solid fa-x fa-2xl"></i>
+    </a>
     <label for="name">
         Имя
         <input
@@ -109,7 +111,7 @@ checkGuest();
     >Продолжить</button>
 </form>
 
-<p>У меня уже есть <a class="acc_link" href="/">аккаунт</a></p>
+<p>У меня уже есть <a class="acc_link" href="login.php">аккаунт</a></p>
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -128,6 +130,7 @@ const submit = document.getElementById('submit');
     }
 </script>
 
+  <script src="https://kit.fontawesome.com/89e7650dfb.js" crossorigin="anonymous"></script>
 <?php include_once __DIR__ . '/components/scripts.php' ?>
 </body>
 </html>

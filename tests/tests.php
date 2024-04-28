@@ -2,9 +2,12 @@
 <html lang="en">
 
 <?php
-include_once __DIR__ . '../components/mainHead.php';
-include_once "testsScript.php";
+    require_once "../php/helpers.php";
 
+include_once __DIR__ . '../components/mainHead.php';
+checkAuth();
+
+include_once "testsScript.php";
 ?>
 
 
@@ -14,7 +17,6 @@ include_once "testsScript.php";
     <?php
 
     require_once "components/header.php";
-    require_once "../php/helpers.php";
 
     $results = getTasksIdsFromDB();
     ?>
