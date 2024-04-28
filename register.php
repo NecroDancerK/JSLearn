@@ -22,6 +22,8 @@ checkGuest();
             placeholder="Иванов Иван"
             value="<?php echo old('name') ?>"
             <?php echo validationErrorAttr('name'); ?>
+            required
+
         >
         <?php if(hasValidationError('name')): ?>
             <small><?php echo validationErrorMessage('name'); ?></small>
@@ -37,6 +39,7 @@ checkGuest();
             placeholder="JSLearn@gmail.com"
             value="<?php echo old('email') ?>"
             <?php echo validationErrorAttr('email'); ?>
+            required
         >
         <?php if(hasValidationError('email')): ?>
             <small><?php echo validationErrorMessage('email'); ?></small>
@@ -49,6 +52,7 @@ checkGuest();
             id="avatar"
             name="avatar"
             <?php echo validationErrorAttr('avatar'); ?>
+            required
         >
         <?php if(hasValidationError('avatar')): ?>
             <small><?php echo validationErrorMessage('avatar'); ?></small>
@@ -64,6 +68,7 @@ checkGuest();
                 name="password"
                 placeholder="******"
                 <?php echo validationErrorAttr('password'); ?>
+                required
             >
             <?php if(hasValidationError('password')): ?>
                 <small><?php echo validationErrorMessage('password'); ?></small>
@@ -77,11 +82,12 @@ checkGuest();
                 id="password_confirmation"
                 name="password_confirmation"
                 placeholder="******"
+                required
             >
         </label>
     </div>
 
-    <fieldset>
+    <!-- <fieldset>
         <label for="terms">
             <input
             class="checkbox"
@@ -91,7 +97,9 @@ checkGuest();
             >
             Я принимаю все условия пользования
         </label>
-    </fieldset>
+    </fieldset> -->
+
+    <div class="g-recaptcha " id="terms" data-sitekey="6LesNZgpAAAAAA3loJ672V8u7woiwZ1nOV6F2vCM" data-callback="disableSubmit"></div>
 
     <button
         class="btn"
@@ -102,6 +110,23 @@ checkGuest();
 </form>
 
 <p>У меня уже есть <a class="acc_link" href="/">аккаунт</a></p>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<script>
+const submit = document.getElementById('submit');
+
+    function onSubmit(token) {
+        let form = document.querySelector('form.card');
+        let recaptchaResponse = document.getElementById('g-recaptcha-response');
+        recaptchaResponse.value = token;
+        form.submit();
+    }
+
+    function disableSubmit() {
+        submit.disabled = false;
+    }
+</script>
 
 <?php include_once __DIR__ . '/components/scripts.php' ?>
 </body>
