@@ -25,7 +25,6 @@ checkGuest();
             value="<?php echo old('name') ?>"
             <?php echo validationErrorAttr('name'); ?>
             required
-
         >
         <?php if(hasValidationError('name')): ?>
             <small><?php echo validationErrorMessage('name'); ?></small>
