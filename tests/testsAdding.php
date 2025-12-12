@@ -96,7 +96,7 @@ if ($isAdmin == 1) { ?>
   <html lang="en">
 
   <?php
-  include_once __DIR__ . '../components/mainHead.php';
+  include_once __DIR__ . '/components/mainHead.php';
   ?>
 
 

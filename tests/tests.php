@@ -1,15 +1,14 @@
+<?php
+    require_once "../php/helpers.php";
+    checkAuth();
+    include_once "testsScript.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
-    require_once "../php/helpers.php";
-
-include_once __DIR__ . '../components/mainHead.php';
-checkAuth();
-
-include_once "testsScript.php";
+include_once __DIR__ . '/components/mainHead.php';
 ?>
-
 
 <body <?php if (isset($_COOKIE['isDarkMode']) && $_COOKIE['isDarkMode'] === 'true') { ?>
     class="dark bg-white dark:bg-gray-900" <?php } ?>>

@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 require_once __DIR__ . '/config.php';
 
@@ -81,8 +83,9 @@ function getMessage($key)
 
 function getPDO()
 {
+  global $DB_HOST, $DB_PORT, $DB_NAME, $DB_USERNAME, $DB_PASSWORD;
   try {
-    return new \PDO('mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';charset=utf8;dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD);
+    return new \PDO('mysql:host=' . $DB_HOST . ';port=' . $DB_PORT . ';charset=utf8;dbname=' . $DB_NAME, $DB_USERNAME, $DB_PASSWORD);
   } catch (\PDOException $e) {
     die("Connection error: {$e->getMessage()}");
   }

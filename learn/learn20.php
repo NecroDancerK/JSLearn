@@ -1,3 +1,6 @@
+<?php
+require_once "../php/helpers.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +14,6 @@
 
     require_once "components/header.php";
 
-    require_once "../php/helpers.php";
 
     $pdo = getPDO();
 

@@ -100,19 +100,18 @@ checkGuest();
         </label>
     </fieldset> -->
 
-    <div class="g-recaptcha " id="terms" data-sitekey="6LesNZgpAAAAAA3loJ672V8u7woiwZ1nOV6F2vCM" data-callback="disableSubmit"></div>
+    <!-- <div class="g-recaptcha " id="terms" data-sitekey="6LesNZgpAAAAAA3loJ672V8u7woiwZ1nOV6F2vCM" data-callback="disableSubmit"></div> -->
 
     <button
         class="btn"
         type="submit"
         id="submit"
-        disabled
     >Продолжить</button>
 </form>
 
 <p>У меня уже есть <a class="acc_link" href="login.php">аккаунт</a></p>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <script>
 const submit = document.getElementById('submit');
@@ -127,7 +126,7 @@ const submit = document.getElementById('submit');
     function disableSubmit() {
         submit.disabled = false;
     }
-</script>
+</script> -->
 
   <script src="https://kit.fontawesome.com/89e7650dfb.js" crossorigin="anonymous"></script>
 <?php include_once __DIR__ . '/components/scripts.php' ?>

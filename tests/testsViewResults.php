@@ -1,10 +1,15 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once "../php/helpers.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
-include_once __DIR__ . '../components/mainHead.php';
-
-require_once "../php/helpers.php";
+include_once __DIR__ . '/components/mainHead.php';
 
 $pdo = getPDO();
 $userId = currentUser()["id"];

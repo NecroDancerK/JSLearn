@@ -1,7 +1,7 @@
 <?php
 
-const DB_HOST = 'localhost';
-const DB_PORT = '3306';
-const DB_NAME = 'JSLearn';
-const DB_USERNAME = 'root';
-const DB_PASSWORD = '';
+$DB_HOST = getenv('DB_HOST') ?: 'localhost';
+$DB_PORT = '3306';
+$DB_NAME = getenv('DB_NAME') ?: 'JSLearn';
+$DB_USERNAME = getenv('DB_USER') ?: 'root';
+$DB_PASSWORD = getenv('DB_PASSWORD') ?: '';

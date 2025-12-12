@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=jslearn_user
+      - DB_PASSWORD=jslearn_password
+      - DB_NAME=jslearn
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+    networks:
+      - jslearn_network
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: jslearn
+      MYSQL_USER: jslearn_user
+      MYSQL_PASSWORD: jslearn_password
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/JSLearn.sql:/docker-entrypoint-initdb.d/JSLearn.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - jslearn_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+volumes:
+  db_data:
+
+networks:
+  jslearn_network:
